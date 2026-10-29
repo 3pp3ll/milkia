@@ -1,0 +1,2930 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="robots" content="noindex" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<title>مِلْكية — حيث تُصان الأفكار</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Tajawal:wght@500;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{
+  /* مِلْكية — هوية فاتحة: عاجي دافئ، كحلي عميق، زمردي، ولمسة ذهبية */
+  --bg:#faf8f3; --bg2:#ffffff; --bg3:#f3efe5;
+  --surface:#ffffff; --surface2:#f7f4ec;
+  --ink:#14213d; --ink2:#3a4660; --muted:#6b7385;
+  --line:rgba(20,33,61,.08); --line2:rgba(20,33,61,.14);
+  --glass:rgba(255,255,255,.82); --glassb:rgba(20,33,61,.09);
+  --teal:#0f766e; --teal-soft:#115e59;
+  --lav:#3f3d8f; --lav-soft:#4f4aa8;
+  --rose:#9d4b6e; --rose-soft:#8a3f5f;
+  --amber:#a87b2d; --amber-soft:#8f6824;
+  --sky:#1f5f8b;
+  --gold:#b08a3e;
+  --grad:linear-gradient(135deg,#0f766e 0%,#1f4e79 100%);
+  --grad-bg:linear-gradient(135deg,rgba(15,118,110,.05),rgba(176,138,62,.05));
+  --grad-card:linear-gradient(170deg,#ffffff,#fcfaf5);
+  --btn-ink:#ffffff;
+  --shadow:0 18px 40px rgba(20,33,61,.08);
+  --radius:18px; --max:1200px;
+  --panel-info-bg:linear-gradient(135deg,rgba(15,118,110,.06),rgba(176,138,62,.05));
+  --panel-info-border:rgba(15,118,110,.25);
+  --panel-info-text:#0f5f59;
+  --arrow-color:%230f766e;
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:"IBM Plex Sans Arabic",Cairo,system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  line-height:1.7;min-height:100vh;
+  transition:background .4s,color .4s;
+  -webkit-tap-highlight-color:transparent;
+  overscroll-behavior-y:none;
+}
+body::before,body::after{content:"";position:fixed;width:800px;height:800px;filter:blur(110px);z-index:-1;pointer-events:none;opacity:.55;transition:opacity .4s}
+body::before{top:-20%;right:-15%;background:radial-gradient(circle,rgba(63,61,143,.35),transparent 70%)}
+body::after{bottom:-20%;left:-15%;background:radial-gradient(circle,rgba(15,118,110,.25),transparent 70%)}
+body.light::before{background:radial-gradient(circle,rgba(63,61,143,.18),transparent 70%)}
+body.light::after{background:radial-gradient(circle,rgba(15,118,110,.14),transparent 70%)}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font-family:inherit}
+.wrap{width:min(var(--max),calc(100% - 40px));margin-inline:auto}
+.hidden{display:none!important}
+
+/* ============ الحقول الموحّدة (إصلاح جذري للأسهم) ============ */
+.field,
+.form-box input,
+.form-box select,
+textarea,
+.app input,
+.app select,
+.app textarea{
+  width:100%;
+  background:var(--bg3);
+  border:1px solid var(--glassb);
+  color:var(--ink);
+  border-radius:12px;
+  padding:13px 15px;
+  outline:none;
+  transition:.3s;
+  font-size:.95rem;
+  font-family:inherit;
+  /* إزالة كل الأنماط الافتراضية */
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+  background-image:none;
+}
+.field:focus,input:focus,select:focus,textarea:focus{border-color:var(--teal);background:var(--surface)}
+
+/* ============ select مخصص (بدون أي أسهم متصفح) ============ */
+/* نخفي السهم الأصلي تماماً ونضع سهمنا */
+select.field,
+.app select,
+.form-box select,
+select{
+  -webkit-appearance:none !important;
+  -moz-appearance:none !important;
+  appearance:none !important;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235eead4' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>") !important;
+  background-repeat:no-repeat !important;
+  background-position:left 14px center !important;
+  background-size:14px !important;
+  padding-left:42px !important;
+  cursor:pointer;
+  /* إزالة سهم IE/Edge */
+}
+body.light select.field,
+body.light select{
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b5cf6' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>") !important;
+}
+select::-ms-expand{display:none !important}
+select::-webkit-select-arrow{display:none}
+
+select option{background:var(--bg3);color:var(--ink);padding:10px}
+select option:checked{background:var(--surface2);color:var(--teal)}
+
+input:-webkit-autofill,input:-webkit-autofill:hover,input:-webkit-autofill:focus,
+select:-webkit-autofill,textarea:-webkit-autofill{
+  -webkit-box-shadow:0 0 0 1000px var(--bg3) inset !important;
+  -webkit-text-fill-color:var(--ink) !important;
+  caret-color:var(--ink);
+}
+
+/* ============ أزرار ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:13px 26px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:.3s ease;font-size:.95rem;font-family:inherit}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--grad);color:var(--btn-ink);box-shadow:var(--shadow)}
+.btn-ghost{background:var(--glass);color:var(--teal);border-color:var(--glassb)}
+.btn-ghost:hover{border-color:var(--teal);background:rgba(15,118,110,.08)}
+.btn-danger{background:rgba(157,75,110,.12);color:var(--rose-soft);border:1px solid rgba(157,75,110,.3)}
+.btn-gold{background:rgba(176,138,62,.12);color:var(--amber-soft);border:1px solid rgba(176,138,62,.28)}
+.btn-sm{padding:8px 16px;font-size:.85rem}
+.btn-xs{padding:5px 10px;font-size:.75rem;border-radius:8px}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+
+.theme-toggle{background:var(--glass);border:1px solid var(--glassb);color:var(--ink);width:40px;height:40px;border-radius:50%;cursor:pointer;display:grid;place-items:center;font-size:1.1rem;transition:.3s}
+.theme-toggle:hover{border-color:var(--teal);transform:rotate(20deg)}
+
+/* هيدر */
+.topnav{position:sticky;top:0;z-index:50;background:var(--bg2);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.topnav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.35rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo-mark{width:36px;height:36px;border-radius:11px;background:var(--grad);color:var(--btn-ink);display:grid;place-items:center;font-weight:800;-webkit-text-fill-color:var(--btn-ink);font-size:1.1rem}
+.nav-links{display:flex;align-items:center;gap:24px;color:var(--ink2);font-size:.95rem}
+.nav-links a:hover{color:var(--teal)}
+.menu-btn{display:none !important}
+
+/* HERO */
+.hero{padding:110px 0 90px;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:60px;align-items:center}
+.kicker{display:inline-flex;gap:8px;align-items:center;color:var(--amber-soft);background:rgba(176,138,62,.08);border:1px solid rgba(176,138,62,.2);border-radius:999px;padding:7px 14px;font-size:.82rem;font-weight:600;margin-bottom:22px}
+.kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--amber-soft);box-shadow:0 0 12px var(--amber-soft);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.hero h1{font-family:Tajawal,sans-serif;font-size:clamp(2.4rem,5vw,4rem);line-height:1.2;font-weight:800;letter-spacing:-.03em}
+.hero h1 .accent{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{margin-top:22px;color:var(--ink2);font-size:1.1rem;max-width:560px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+.waitlist-note{margin-top:18px;color:var(--muted);font-size:.92rem}
+.waitlist-note strong{color:var(--amber-soft)}
+.hero-visual{position:relative}
+.visual-card{background:var(--grad-card);backdrop-filter:blur(20px);border:1px solid var(--glassb);border-radius:28px;padding:26px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.page-glow{position:fixed;inset:-30%;z-index:0;pointer-events:none;background:conic-gradient(from 0deg,transparent,rgba(15,118,110,.12),rgba(63,61,143,.1),transparent 40%);animation:rotate 18s linear infinite;opacity:.85}
+.visual-card::before{content:none}
+@keyframes rotate{to{transform:rotate(360deg)}}
+.visual-card .inner{position:relative;z-index:1}
+.visual-title{font-size:.85rem;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.visual-title::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal)}
+.status-row{display:flex;align-items:center;justify-content:space-between;background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:13px 16px;margin-top:10px;transition:.3s}
+.status-row:hover{background:rgba(255,255,255,.05);border-color:var(--glassb)}
+.sdot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-left:10px}
+.pill{font-size:.75rem;border-radius:999px;padding:4px 11px;font-weight:600}
+
+.trust{max-width:960px;margin:40px auto 0;padding:24px;background:var(--glass);border:1px solid var(--line);border-radius:22px;display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;color:var(--muted);backdrop-filter:blur(12px);font-size:.9rem}
+.trust span{display:flex;align-items:center;gap:8px}
+.trust .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal)}
+.trust .label{font-weight:600;color:var(--ink2)}
+
+section.block{padding:100px 0;position:relative}
+section.block::before{content:"";position:absolute;inset:0;background:var(--grad-bg);opacity:.4;pointer-events:none;z-index:-1}
+.section-title{text-align:center;font-family:Tajawal,sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;margin-bottom:16px;letter-spacing:-.5px}
+.section-sub{text-align:center;color:var(--muted);max-width:640px;margin:0 auto 60px;font-size:1.05rem}
+.cards-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.card{background:var(--grad-card);border:1px solid var(--glassb);border-radius:22px;padding:38px 30px;transition:.4s ease;position:relative;overflow:hidden;backdrop-filter:blur(10px)}
+.card::before{content:"";position:absolute;top:0;right:0;width:100%;height:2px;background:var(--grad);opacity:0;transition:opacity .4s}
+.card:hover{transform:translateY(-6px);border-color:rgba(63,61,143,.4);box-shadow:var(--shadow)}
+.card:hover::before{opacity:1}
+.card-icon{font-size:2.1rem;margin-bottom:20px;display:block}
+.card h3{font-size:1.25rem;margin-bottom:12px;font-weight:700}
+.card p{color:var(--ink2);font-size:.95rem}
+.card.rose .card-icon{color:var(--rose-soft)}
+.card.lav .card-icon{color:var(--lav)}
+.card.amber .card-icon{color:var(--amber-soft)}
+.card.teal .card-icon{color:var(--teal)}
+.card.border-teal{border-color:rgba(15,118,110,.28)}
+.card.border-lav{border-color:rgba(63,61,143,.28)}
+.card.border-amber{border-color:rgba(176,138,62,.25)}
+
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.step{background:var(--grad-card);border:1px solid var(--line);border-radius:22px;padding:30px 26px;transition:.3s ease;backdrop-filter:blur(10px)}
+.step:hover{transform:translateY(-4px);border-color:rgba(63,61,143,.3)}
+.step-num{width:50px;height:50px;border-radius:50%;background:var(--grad);color:var(--btn-ink);font-weight:700;font-size:1.15rem;display:flex;align-items:center;justify-content:center;margin-bottom:18px;box-shadow:var(--shadow)}
+.step h3{margin-bottom:10px;font-size:1.1rem}
+.step p{color:var(--ink2);font-size:.92rem}
+
+.status-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;max-width:960px;margin:0 auto}
+.status-item{padding:22px;border-radius:16px;background:var(--grad-card);border:1px solid var(--line);border-top:3px solid var(--st);transition:.3s}
+.status-item:hover{transform:translateY(-3px)}
+.status-item h3{font-size:1.05rem;margin-bottom:6px}
+.status-item p{color:var(--muted);font-size:.86rem}
+
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.glass-card{background:var(--grad-card);backdrop-filter:blur(12px);border:1px solid var(--glassb);border-radius:22px;padding:28px;transition:.3s ease}
+.glass-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.glass-card p{color:var(--ink2)}
+.glass-card h3{margin-bottom:10px}
+
+.partners{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;max-width:1020px;margin:0 auto}
+.partner{background:var(--grad-card);border:1px solid var(--glassb);border-radius:20px;padding:30px 26px;text-align:center;transition:.3s}
+.partner:hover{border-color:var(--teal);box-shadow:var(--shadow);transform:translateY(-4px)}
+.partner .card-icon{margin-bottom:14px;font-size:2rem}
+.partner h3{color:var(--teal);margin-bottom:10px;font-size:1.1rem}
+.partner p{color:var(--ink2);font-size:.92rem}
+
+.form-box{max-width:680px;margin:0 auto;background:var(--grad-card);backdrop-filter:blur(16px);border:1px solid var(--glassb);border-radius:28px;padding:32px}
+label{font-size:.88rem;color:var(--ink2);display:block;margin-bottom:6px;font-weight:500}
+
+.form-grid{display:grid;gap:16px}
+.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.role{border:1px solid var(--glassb);background:var(--glass);border-radius:14px;padding:13px 10px;text-align:center;cursor:pointer;color:var(--ink2);transition:.3s;font-size:.9rem}
+.role:hover{border-color:var(--teal)}
+.role:has(input:checked){border-color:var(--teal);color:var(--ink);background:rgba(15,118,110,.06);box-shadow:0 0 20px rgba(15,118,110,.15)}
+.form-msg{display:none;margin-top:14px;color:var(--teal);text-align:center;font-weight:600}
+
+footer.site{background:var(--bg2);border-top:1px solid var(--line);padding:48px 0 calc(32px + env(safe-area-inset-bottom));text-align:center;color:var(--muted)}
+.foot-links{display:flex;justify-content:center;gap:24px;margin:16px 0;flex-wrap:wrap}
+.foot-links a:hover{color:var(--teal)}
+
+/* التطبيق */
+.app{display:grid;grid-template-columns:270px 1fr;min-height:100vh;background:var(--bg);position:relative}
+.app::before{content:"";position:absolute;inset:0;background:var(--grad-bg);opacity:.5;pointer-events:none;z-index:0}
+.side{background:var(--bg2);border-left:1px solid var(--line);padding:24px 16px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:6px;overflow-y:auto;z-index:1}
+.side a,.side button.navitem{display:flex;align-items:center;gap:10px;width:100%;text-align:right;background:transparent;border:0;color:var(--ink2);padding:11px 14px;border-radius:12px;cursor:pointer;font-size:.93rem;transition:.25s;font-weight:500;font-family:inherit}
+.side a:hover,.side button.navitem:hover{background:rgba(15,118,110,.06);color:var(--ink)}
+.side a.active,.side button.navitem.active{background:linear-gradient(135deg,rgba(15,118,110,.15),rgba(63,61,143,.12));color:var(--teal)}
+.side .grow{flex:1}
+.main{padding:28px 32px 60px;min-width:0;position:relative;z-index:1}
+.appbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:26px;flex-wrap:wrap}
+.appbar h2{font-family:Tajawal,sans-serif;font-size:1.5rem;font-weight:700}
+.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 12px;font-size:.78rem;font-weight:600;border:1px solid var(--line);background:var(--glass)}
+.sim-badge{display:inline-flex;align-items:center;border-radius:999px;padding:2px 8px;font-size:.68rem;font-weight:700;color:var(--amber-soft);border:1px solid rgba(176,138,62,.35);background:rgba(176,138,62,.1);margin-inline:6px;vertical-align:middle}
+.table{width:100%;border-collapse:collapse;background:var(--grad-card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.table th,.table td{padding:13px 16px;text-align:right;border-bottom:1px solid var(--line);font-size:.92rem}
+.table th{color:var(--muted);font-weight:600;background:var(--glass);font-size:.85rem;text-transform:uppercase;letter-spacing:.05em}
+.table tr:hover td{background:rgba(15,118,110,.03)}
+.idea-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.idea-card{background:var(--grad-card);border:1px solid var(--glassb);border-radius:18px;padding:20px;cursor:pointer;transition:.3s}
+.idea-card:hover{transform:translateY(-4px);border-color:var(--lav);box-shadow:var(--shadow)}
+.file-chip{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--bg3);border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin-top:8px;font-size:.9rem}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);display:none;place-items:center;z-index:80;padding:18px;padding-top:calc(18px + env(safe-area-inset-top));padding-bottom:calc(18px + env(safe-area-inset-bottom))}
+.modal.open{display:grid}
+.modal-box{background:var(--bg2);border:1px solid var(--glassb);border-radius:22px;padding:28px;width:min(680px,100%);max-height:88vh;overflow:auto}
+.auth-box{width:min(480px,calc(100% - 32px));margin:6vh auto;background:var(--grad-card);border:1px solid var(--glassb);border-radius:26px;padding:32px;backdrop-filter:blur(20px)}
+.hint{color:var(--muted);font-size:.85rem;margin-top:10px}
+.admin-banner{
+  padding:16px 20px;
+  border-radius:16px;
+  background:var(--panel-info-bg);
+  border:1px solid var(--panel-info-border);
+  color:var(--panel-info-text);
+  margin:12px 0;
+  font-weight:500;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.admin-banner::before{
+  content:"";
+  width:8px;height:8px;border-radius:50%;
+  background:var(--panel-info-text);
+  box-shadow:0 0 12px var(--panel-info-text);
+  flex-shrink:0;
+}
+.admin-banner b{font-weight:700}
+.cert{border:1px solid var(--amber-soft);border-radius:18px;padding:24px;background:var(--grad-card);text-align:center}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-bottom:26px}
+.stat{background:var(--grad-card);border:1px solid var(--line);border-radius:18px;padding:20px;transition:.3s}
+.stat:hover{border-color:var(--glassb);transform:translateY(-2px)}
+.stat b{display:block;font-size:1.6rem;font-weight:700;margin-top:6px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat.good b{background:linear-gradient(135deg,#0f766e,#115e59);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat.warn b{background:linear-gradient(135deg,#b08a3e,#fbbf24);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat.bad b{background:linear-gradient(135deg,#9d4b6e,#9d4b6e);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat.info b{background:linear-gradient(135deg,#3f3d8f,#4f4aa8);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.check-list{display:grid;gap:10px;margin-top:16px}
+.check-item{display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--bg3);border:1px solid var(--line);border-radius:14px;font-size:.92rem;transition:.3s}
+.check-item input[type="checkbox"]{
+  width:22px;height:22px;
+  appearance:none;-webkit-appearance:none;
+  border:2px solid var(--glassb);
+  border-radius:6px;
+  cursor:pointer;flex-shrink:0;
+  background:var(--bg2);
+  position:relative;
+  transition:.25s;
+}
+.check-item input[type="checkbox"]:hover{border-color:var(--teal)}
+.check-item input[type="checkbox"]:checked{background:var(--grad);border-color:transparent}
+.check-item input[type="checkbox"]:checked::after{
+  content:"✓";
+  position:absolute;inset:0;
+  display:grid;place-items:center;
+  color:var(--btn-ink);font-weight:800;font-size:.85rem;
+}
+.check-item.done{border-color:rgba(15,118,110,.35);background:rgba(15,118,110,.05)}
+.check-item.missing{border-color:rgba(157,75,110,.3);background:rgba(157,75,110,.04)}
+.check-item label{cursor:pointer;margin:0;color:var(--ink);flex:1}
+.check-actions{display:flex;gap:6px;margin-right:auto}
+.icon-btn{background:var(--glass);border:1px solid var(--glassb);color:var(--ink2);width:32px;height:32px;border-radius:8px;cursor:pointer;display:grid;place-items:center;font-size:.85rem;transition:.3s;font-family:inherit}
+.icon-btn:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px)}
+.icon-btn.add:hover{border-color:var(--teal);color:var(--teal)}
+.icon-btn.edit:hover{border-color:var(--amber-soft);color:var(--amber-soft)}
+.icon-btn.del:hover{border-color:var(--rose-soft);color:var(--rose-soft)}
+
+.docs-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:22px}
+.docs-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.docs-tab{padding:9px 18px;border-radius:12px;background:var(--glass);border:1px solid var(--glassb);color:var(--ink2);cursor:pointer;font-weight:600;transition:.3s;font-size:.88rem;font-family:inherit}
+.docs-tab:hover{background:rgba(15,118,110,.06);color:var(--ink)}
+.docs-tab.active{background:var(--grad);color:var(--btn-ink);border-color:transparent}
+.doc-item{background:var(--grad-card);border:1px solid var(--glassb);border-radius:16px;padding:20px;margin-bottom:12px;transition:.3s;position:relative;overflow:hidden}
+.doc-item::before{content:"";position:absolute;right:0;top:0;bottom:0;width:3px;background:var(--grad);opacity:.6}
+.doc-item:hover{border-color:var(--teal);transform:translateX(-3px)}
+.doc-item h4{color:var(--teal);margin-bottom:10px;font-size:1.05rem;display:flex;align-items:center;gap:10px;font-weight:600}
+.doc-item p{color:var(--ink2);font-size:.9rem;margin-bottom:10px}
+.doc-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.req{display:inline-block;font-size:.73rem;padding:3px 11px;border-radius:999px;font-weight:600}
+.req.mandatory{background:rgba(157,75,110,.12);color:var(--rose-soft);border:1px solid rgba(157,75,110,.28)}
+.req.optional{background:rgba(176,138,62,.12);color:var(--amber-soft);border:1px solid rgba(176,138,62,.28)}
+.req.official{background:rgba(15,118,110,.1);color:var(--teal);border:1px solid rgba(15,118,110,.25)}
+.doc-action{margin-top:12px}
+.doc-sign-btn{background:rgba(15,118,110,.1);color:var(--teal);border:1px solid rgba(15,118,110,.3);padding:8px 18px;border-radius:10px;cursor:pointer;font-weight:600;font-size:.85rem;transition:.3s;font-family:inherit}
+.doc-sign-btn:hover{background:rgba(15,118,110,.18);transform:translateY(-2px)}
+.doc-sign-btn.signed{background:rgba(15,118,110,.18);color:var(--teal);cursor:default}
+.doc-head-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.doc-add-btn{background:var(--grad);color:var(--btn-ink);border:none;padding:10px 20px;border-radius:12px;cursor:pointer;font-weight:600;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;transition:.3s;font-family:inherit}
+.doc-add-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+
+.perm-row{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg3);border:1px solid var(--line);border-radius:10px;margin-bottom:8px;font-size:.9rem}
+.perm-row input[type="checkbox"]{width:18px;height:18px;appearance:none;border:2px solid var(--glassb);border-radius:5px;cursor:pointer;background:var(--bg2);position:relative;transition:.25s;flex-shrink:0}
+.perm-row input[type="checkbox"]:hover{border-color:var(--teal)}
+.perm-row input[type="checkbox"]:checked{background:var(--grad);border-color:transparent}
+.perm-row input[type="checkbox"]:checked::after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;color:var(--btn-ink);font-weight:800;font-size:.7rem}
+.perm-row label{flex:1;cursor:pointer;margin:0}
+.perm-badge{font-size:.7rem;padding:2px 8px;border-radius:999px;background:rgba(15,118,110,.12);color:var(--teal);border:1px solid rgba(15,118,110,.25)}
+
+.log-entry{
+  background:var(--grad-card);
+  border:1px solid var(--glassb);
+  border-radius:14px;
+  padding:14px 16px;
+  margin-bottom:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  transition:.3s;
+}
+.log-entry:hover{border-color:var(--lav);transform:translateX(-3px)}
+.log-entry .log-text{color:var(--ink);font-weight:500;font-size:.92rem}
+.log-entry .log-time{color:var(--muted);font-size:.82rem;flex-shrink:0}
+
+/* ===== شارت بسيط ===== */
+.chart-bars{display:grid;gap:14px;margin-top:16px}
+.chart-row{display:flex;align-items:center;gap:14px}
+.chart-label{min-width:140px;font-size:.9rem;color:var(--ink2);font-weight:500}
+.chart-bar-wrap{flex:1;background:var(--bg3);border-radius:999px;height:28px;position:relative;overflow:hidden;border:1px solid var(--line)}
+.chart-bar{height:100%;background:var(--grad);border-radius:999px;display:flex;align-items:center;justify-content:flex-end;padding-left:12px;color:var(--btn-ink);font-weight:700;font-size:.85rem;min-width:44px;transition:width .8s ease}
+.chart-bar.teal{background:linear-gradient(135deg,#0f766e,#115e59)}
+.chart-bar.lav{background:linear-gradient(135deg,#3f3d8f,#4f4aa8)}
+.chart-bar.amber{background:linear-gradient(135deg,#b08a3e,#b08a3e)}
+.chart-bar.rose{background:linear-gradient(135deg,#9d4b6e,#9d4b6e)}
+
+@media(max-width:900px){
+  .hero-grid,.grid-2{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .menu-btn{display:none !important}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:68px;inset-inline:16px;background:var(--bg2);border:1px solid var(--glassb);border-radius:16px;padding:16px;z-index:60}
+  .roles{grid-template-columns:1fr}
+  .hero{padding:70px 0 60px}
+  section.block{padding:70px 0}
+}
+
+.phone-mode-btn{display:none !important}
+.phone-mode-btn-off{
+  width:38px;height:38px;border-radius:12px;
+  border:1px solid var(--glassb);background:var(--bg3);color:var(--ink);
+  cursor:pointer;font-size:1.05rem;flex:0 0 auto;
+}
+body.mode-mobile .phone-mode-btn,
+.phone-mode-btn.on{
+  background:var(--grad);color:var(--btn-ink);border-color:transparent;
+}
+.topnav-actions{display:flex;align-items:center;gap:6px;flex-wrap:nowrap}
+.ai-btn,.ai-fab{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+  border:1px solid #ece7e2;background:#f6f4f1;color:#3f3a36;
+  cursor:pointer;flex:0 0 auto;font-weight:700;line-height:1;
+}
+.ai-btn{width:46px;height:46px;border-radius:16px;font-size:.62rem}
+.ai-btn .ai-sun,.ai-fab .ai-sun{font-size:1.15rem;color:#c4b5a5}
+.ai-fab{
+  display:none;position:fixed;z-index:85;
+  left:14px;bottom:calc(86px + env(safe-area-inset-bottom));
+  width:58px;height:58px;border-radius:18px;font-size:.68rem;
+  box-shadow:0 10px 24px rgba(0,0,0,.12);
+}
+body.mode-mobile.ai-open-ready .ai-fab{display:flex}
+.ai-ico{
+  width:34px;height:34px;border-radius:12px;border:0;background:#e8eef2;color:#1f3a46;
+  cursor:pointer;font-size:.95rem;
+}
+.pass-wrap{position:relative}
+.pass-wrap .field{padding-left:44px}
+.eye-btn{position:absolute;left:8px;top:50%;transform:translateY(-50%);border:0;background:transparent;cursor:pointer;font-size:1.05rem;color:var(--muted)}
+.ai-panel{
+  display:none;position:fixed;z-index:95;
+  width:min(400px,calc(100% - 20px));
+  height:min(560px,78vh);
+  bottom:18px;left:10px;
+  background:var(--bg2);border:1px solid var(--glassb);border-radius:22px;
+  box-shadow:0 20px 50px rgba(0,0,0,.35);
+  flex-direction:column;overflow:hidden;
+}
+.ai-panel.open{display:flex}
+body.mode-mobile .ai-panel{
+  left:8px;right:8px;width:auto;
+  bottom:calc(78px + env(safe-area-inset-bottom));
+  height:min(70vh,560px);
+}
+.ai-head{padding:12px 14px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:flex-start}
+.ai-msgs{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.ai-bubble{max-width:92%;padding:10px 12px;border-radius:14px;font-size:.9rem;line-height:1.7}
+.ai-bubble.bot{background:var(--bg3);border:1px solid var(--line);align-self:flex-start}
+.ai-bubble.me{background:linear-gradient(135deg,rgba(15,118,110,.2),rgba(63,61,143,.16));align-self:flex-end}
+.ai-form{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}
+.ai-form input{flex:1;margin:0}
+.more-sheet{
+  display:none;position:fixed;inset:0;z-index:90;
+  background:rgba(0,0,0,.55);
+}
+.more-sheet.open{display:block}
+.more-sheet .sheet{
+  position:absolute;left:0;right:0;bottom:0;
+  background:var(--bg2);
+  border-top:1px solid var(--glassb);
+  border-radius:22px 22px 0 0;
+  padding:22px 16px calc(18px + env(safe-area-inset-bottom));
+  max-height:70vh;overflow:auto;
+}
+.sheet-close{
+  position:absolute;top:10px;left:10px;
+  width:36px;height:36px;border-radius:12px;
+  border:1px solid var(--glassb);background:var(--bg3);color:var(--ink);
+  cursor:pointer;font-size:1.1rem;
+}
+.more-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.more-grid button{
+  background:var(--bg3);border:1px solid var(--line);color:var(--ink);
+  border-radius:14px;padding:12px 6px;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:6px;font-size:.72rem;
+}
+
+body.mode-mobile .hero-grid,
+body.mode-mobile .grid-2{grid-template-columns:1fr}
+body.mode-mobile .nav-links{display:none}
+body.mode-mobile .menu-btn{display:none !important}
+body.mode-mobile .hero{padding:70px 0 60px}
+body.mode-mobile section.block{padding:70px 0}
+body.mode-mobile .hero-actions{flex-direction:column}
+body.mode-mobile .hero-actions .btn{width:100%}
+body.mode-mobile .trust{padding:16px;gap:14px;font-size:.82rem}
+body.mode-mobile .form-box,body.mode-mobile .glass-card{padding:20px}
+body.mode-mobile .roles{grid-template-columns:1fr}
+body.mode-mobile .stats{grid-template-columns:1fr 1fr}
+body.mode-mobile .idea-grid{grid-template-columns:1fr}
+body.mode-mobile .auth-box{margin:3vh auto;padding:24px 20px;width:min(480px,calc(100% - 24px))}
+body.mode-mobile .modal{padding:10px;align-items:flex-end}
+body.mode-mobile .modal-box{border-radius:22px 22px 0 0;max-height:90vh;padding:22px 18px calc(22px + env(safe-area-inset-bottom))}
+
+body.mode-mobile .app{
+  grid-template-columns:1fr;
+  padding-bottom:calc(78px + env(safe-area-inset-bottom));
+}
+body.mode-mobile .side{
+  position:fixed;bottom:0;left:0;right:0;top:auto;
+  height:auto;width:100%;
+  padding:6px 6px calc(8px + env(safe-area-inset-bottom));
+  border-left:none;
+  border-top:1px solid rgba(63,61,143,.3);
+  background:linear-gradient(180deg,#ffffff,#f7f4ec);
+  backdrop-filter:blur(20px);
+  display:flex;flex-direction:row;justify-content:space-around;
+  gap:2px;overflow:visible;z-index:70;
+  box-shadow:0 -8px 24px rgba(45,212,191,.18);
+}
+body:not(.light).mode-mobile .side{
+  background:linear-gradient(180deg,#ffffff,#1b2a4a);
+  border-top-color:rgba(63,61,143,.4);
+  box-shadow:0 -8px 24px rgba(0,0,0,.4);
+}
+body.mode-mobile .side .logo,
+body.mode-mobile .side .grow,
+body.mode-mobile .side .desk-only{display:none}
+body.mode-mobile .side button.navitem{
+  flex:1;min-width:0;max-width:84px;
+  flex-direction:column;gap:3px;
+  padding:8px 4px;font-size:.64rem;text-align:center;
+  border-radius:14px;white-space:nowrap;
+  color:#5b21b6;
+}
+body:not(.light).mode-mobile .side button.navitem{color:#3f3d8f}
+body.mode-mobile .side button.navitem.active{
+  background:#fff;
+  color:#3f3d8f;
+  box-shadow:0 4px 12px rgba(109,40,217,.14);
+}
+body:not(.light).mode-mobile .side button.navitem.active{
+  background:linear-gradient(135deg,rgba(15,118,110,.18),rgba(63,61,143,.16));
+  color:#0f766e;
+}
+body.mode-mobile .side button.navitem span:first-child{font-size:1.25rem;filter:none}
+body.mode-mobile .main{padding:16px 14px 24px}
+body.mode-mobile .appbar{margin-bottom:14px}
+body.mode-mobile .appbar h2{font-size:1.15rem}
+body.mode-mobile .chip-site{display:none}
+
+body.mode-mobile .topnav-inner{padding:10px 0;gap:8px}
+body.mode-mobile .logo{font-size:1.15rem}
+@media(max-width:768px){
+  .phone-mode-btn{display:none !important}
+}
+body.mode-mobile .phone-mode-btn{display:none !important}
+.contact-btn{
+  width:46px;height:46px;border-radius:16px;border:1px solid var(--glassb);
+  background:var(--bg3);color:var(--ink);cursor:pointer;font-size:1.15rem;flex:0 0 auto;
+}
+.fx-bubble{
+  position:fixed;width:18px;height:18px;border-radius:50%;
+  pointer-events:none;z-index:130;
+  background:radial-gradient(circle,rgba(15,118,110,.85),rgba(63,61,143,.15) 70%,transparent);
+  animation:popbub .7s ease-out forwards;
+}
+@keyframes popbub{to{transform:scale(3.4);opacity:0}}
+body.cursor-bubble,body.cursor-bubble *{cursor:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'><circle cx='8' cy='8' r='6' fill='%235eead4' fill-opacity='.7'/></svg>") 8 8, auto}
+body.mode-mobile #landingAuth .badge{display:none}
+body.mode-mobile .hero h1{font-size:2rem}
+@media(max-width:400px){
+  body.mode-mobile .stats{grid-template-columns:1fr}
+}
+
+/* ===== لمسات الهوية الفاتحة ===== */
+body::before{background:radial-gradient(circle,rgba(176,138,62,.10),transparent 70%)!important;opacity:1}
+body::after{background:radial-gradient(circle,rgba(15,118,110,.08),transparent 70%)!important;opacity:1}
+.theme-toggle{display:none!important}
+h1,h2,h3{letter-spacing:-.01em}
+::selection{background:rgba(15,118,110,.18)}
+
+.beta-badge{position:fixed;bottom:14px;inset-inline-start:14px;z-index:9999;background:#fff;border:1px solid rgba(176,138,62,.45);color:#8f6824;font:600 12px/1.4 "IBM Plex Sans Arabic",system-ui,sans-serif;padding:6px 12px;border-radius:999px;box-shadow:0 6px 18px rgba(20,33,61,.08);pointer-events:none}
+@media(max-width:640px){.beta-badge{bottom:auto;top:8px;inset-inline-start:50%;transform:translateX(50%);font-size:11px;padding:4px 10px}}
+</style>
+</head>
+<body>
+<div class="beta-badge" role="note">نسخة تجريبية · لا ترفع أفكار حقيقية</div>
+<div id="moreSheet" class="more-sheet" onclick="if(event.target.id==='moreSheet')closeMore()">
+  <div class="sheet">
+    <button class="sheet-close" type="button" onclick="closeMore()" title="إغلاق">✕</button>
+    <b style="display:block;margin-bottom:14px;padding-left:40px">المزيد</b>
+    <div class="more-grid" id="moreGrid"></div>
+  </div>
+</div>
+
+<div id="view-landing">
+<header class="topnav">
+  <div class="wrap topnav-inner">
+    <a class="logo" href="#top"><span class="logo-mark">م</span>مِلْكية</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#problem">المشكلة</a><a href="#solution">الحل</a><a href="#how">كيف تعمل</a><a href="#features">الميزات</a><a href="#partners">الشركاء</a><a href="#cta">سجّل اهتمامك</a>
+    </nav>
+    <div class="topnav-actions">
+      <button class="contact-btn" onclick="openContact();event.stopPropagation()" title="اتصل بنا">📞</button>
+      <button class="ai-btn" onclick="toggleAi(event)" title="مساعد مِلْكية"><span class="ai-sun">☀</span><span>AI</span></button>
+      <button class="theme-toggle" onclick="toggleTheme()" title="تبديل الوضع">🌙</button>
+      <div id="landingAuth" style="display:flex;gap:6px;align-items:center">
+        <button class="btn btn-ghost btn-sm" onclick="showAuth('login')">دخول</button>
+        <button class="btn btn-primary btn-sm" onclick="showAuth('register')">ابدأ الآن</button>
+      </div>
+    </div>
+  </div>
+</header>
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker"><span class="dot"></span> منصة سعودية لحماية الأفكار الخام</div>
+      <h1>كل فكرة عظيمة… <span class="accent">تستحق</span> مالكها.</h1>
+      <p class="hero-sub">منصة سعودية لبيع وشراء الأفكار والمشاريع الخام — بضمان تقني، قانوني، ومالي. لا احتيال. لا حذف. لا ضياع حقوق.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="showAuth('register')">اعرض فكرتك</button>
+        <button class="btn btn-ghost" onclick="goBrowse()">تصفّح الأفكار</button>
+      </div>
+      <p class="waitlist-note">انضم لقائمة الانتظار — أول <strong>١٠٠ مسجّل</strong> يحصلون على استشارة مجانية.</p>
+    </div>
+    <aside class="hero-visual">
+      <div class="visual-card"><div class="inner">
+        <p class="visual-title">لوحة الحالات — مباشرة وواضحة</p>
+        <div class="status-row"><span><i class="sdot" style="background:var(--muted)"></i> قيد الفحص</span><span class="pill" style="color:var(--muted);background:rgba(154,146,179,.15)">مراجعة</span></div>
+        <div class="status-row"><span><i class="sdot" style="background:var(--teal)"></i> متاح</span><span class="pill" style="color:var(--teal);background:rgba(15,118,110,.12)">للبيع</span></div>
+        <div class="status-row"><span><i class="sdot" style="background:var(--amber-soft)"></i> قيد التفاوض</span><span class="pill" style="color:var(--amber-soft);background:rgba(176,138,62,.12)">اهتمام</span></div>
+        <div class="status-row"><span><i class="sdot" style="background:var(--lav)"></i> مُباع</span><span class="pill" style="color:var(--lav);background:rgba(63,61,143,.15)">مكتمل</span></div>
+      </div></div>
+    </aside>
+  </div>
+  <div class="wrap"><div class="trust">
+    <span class="label">مدعوم بـ</span>
+    <span><span class="dot"></span> خدمة ضامن من عِلم <span class="sim-badge">محاكاة</span></span>
+    <span><span class="dot"></span> مكتب محاماة شريك <span class="sim-badge">محاكاة</span></span>
+    <span><span class="dot"></span> شركة تقنية للتحقق <span class="sim-badge">محاكاة</span></span>
+    <span><span class="dot"></span> النفاذ الوطني الموحد <span class="sim-badge">محاكاة</span></span>
+  </div></div>
+</section>
+
+<section class="block" id="problem"><div class="wrap">
+  <h2 class="section-title">الأفكار تُسرق… أو تُدفن.</h2>
+  <p class="section-sub">ثلاث مشاكل حقيقية يعاني منها كل صاحب فكرة ومشتري في السوق.</p>
+  <div class="cards-3">
+    <article class="card rose"><span class="card-icon">🚨</span><h3>الاحتيال</h3><p>بائع يبيع فكرة غير مكتملة، أو يبيعها لأكثر من مشترٍ، أو يحذف الملفات بعد البيع.</p></article>
+    <article class="card lav"><span class="card-icon">🕳️</span><h3>الفراغ</h3><p>لا يوجد سوق سعودي منظم لبيع الأفكار الخام والمشاريع في مراحلها المبكرة.</p></article>
+    <article class="card amber"><span class="card-icon">⚖️</span><h3>الضعف القانوني</h3><p>لا مستندات ملزمة، لا ضمان مالي، لا طرف ثالث يفحص الملفات قبل العرض.</p></article>
+  </div>
+</div></section>
+
+<section class="block" id="solution"><div class="wrap">
+  <h2 class="section-title">ثلاث طبقات حماية… من الفكرة إلى الصفقة.</h2>
+  <p class="section-sub">نظام تحقق ثلاثي يمنع الاحتيال ويضمن الحقوق.</p>
+  <div class="cards-3">
+    <article class="card border-teal teal"><span class="card-icon">🧠</span><h3>الطبقة التقنية</h3><p>شركة تقنية شريكة تفحص اكتمال ملفك وفق معايير معلنة.</p></article>
+    <article class="card border-lav lav"><span class="card-icon">⚖️</span><h3>الطبقة القانونية</h3><p>مكتب محاماة شريك يوثّق الإقرارات، يوقّع NDA، ويبحث في منصة الحماية الفكرية.</p></article>
+    <article class="card border-amber amber"><span class="card-icon">💰</span><h3>الطبقة المالية</h3><p>المبلغ يبقى في حساب ضمان حتى نقل الملفات وتأكيد الاستلام.</p></article>
+  </div>
+</div></section>
+
+<section class="block" id="how"><div class="wrap">
+  <h2 class="section-title">من فكرة… إلى صفقة موثّقة.</h2>
+  <p class="section-sub">ست خطوات واضحة، كل خطوة محمية.</p>
+  <div class="steps">
+    <div class="step"><div class="step-num">١</div><h3>سجّل وارفع فكرتك</h3><p>مع ملفاتك كاملة.</p></div>
+    <div class="step"><div class="step-num">٢</div><h3>تحقق الهوية <span class="sim-badge">محاكاة</span></h3><p>عبر النفاذ الوطني الموحد — الربط الرسمي بعد الاتفاق مع الشريك.</p></div>
+    <div class="step"><div class="step-num">٣</div><h3>فحص الملف</h3><p>تقني + قانوني + بحث حماية فكرية.</p></div>
+    <div class="step"><div class="step-num">٤</div><h3>عرض الفكرة</h3><p>بحالة «متاح» للمشتري.</p></div>
+    <div class="step"><div class="step-num">٥</div><h3>المشتري يوقّع NDA ويدفع</h3><p>المبلغ يبقى في الضمان.</p></div>
+    <div class="step"><div class="step-num">٦</div><h3>نقل الملفات + تحرير المبلغ</h3><p>وتصدر شهادة المشروع.</p></div>
+  </div>
+</div></section>
+
+<section class="block" id="status"><div class="wrap">
+  <h2 class="section-title">كل فكرة… لها حالة واضحة.</h2>
+  <p class="section-sub">تعرف بالضبط في أي مرحلة تقف الفكرة.</p>
+  <div class="status-grid">
+    <article class="status-item" style="--st:var(--muted)"><h3>قيد الفحص</h3><p>تحت المراجعة التقنية والقانونية</p></article>
+    <article class="status-item" style="--st:var(--teal)"><h3>متاح</h3><p>مكتملة ومعروضة للبيع</p></article>
+    <article class="status-item" style="--st:var(--amber-soft)"><h3>قيد التفاوض</h3><p>مشترٍ أبدى اهتماماً</p></article>
+    <article class="status-item" style="--st:var(--lav)"><h3>مُباع</h3><p>تم نقل الملكية وتحرير المبلغ</p></article>
+    <article class="status-item" style="--st:var(--rose-soft)"><h3>ملغاة</h3><p>سحبها البائع أو أوقفتها الإدارة</p></article>
+    <article class="status-item" style="--st:var(--ink2)"><h3>مجانية</h3><p>معروضة للتطوير بدون مقابل</p></article>
+  </div>
+</div></section>
+
+<section class="block" id="features"><div class="wrap">
+  <h2 class="section-title">ما يجعلنا مختلفين.</h2>
+  <p class="section-sub">ميزات مبنية لحماية الطرفين وبناء الثقة.</p>
+  <div class="grid-2">
+    <article class="glass-card"><div style="font-size:1.7rem;color:var(--teal)">🔍</div><h3>كشف إعادة الرفع</h3><p>نفس الملف لو رُفع مرة أخرى من حساب آخر — ننبّه الإدارة فوراً.</p></article>
+    <article class="glass-card"><div style="font-size:1.7rem;color:var(--amber-soft)">📜</div><h3>شهادة المشروع</h3><p>بعد كل بيع، تُصدر شهادة إلكترونية موثّقة.</p></article>
+    <article class="glass-card"><div style="font-size:1.7rem;color:var(--lav)">💬</div><h3>استشارات مجانية</h3><p>قانونية، تجارية، تقنية — حتى ٣ استشارات شهرياً.</p></article>
+    <article class="glass-card"><div style="font-size:1.7rem;color:var(--rose-soft)">🎁</div><h3>أفكار مجانية</h3><p>قسم مخصص لأفكار قابلة للتطوير بدون مقابل.</p></article>
+  </div>
+</div></section>
+
+<section class="block" id="partners"><div class="wrap">
+  <h2 class="section-title">نبنيها معاً… بثقة.</h2>
+  <p class="section-sub">شركاء متخصصون في كل طبقة حماية.</p>
+  <div class="partners">
+    <article class="partner"><span class="card-icon">⚙</span><h3>شركة تقنية</h3><p>فحص اكتمال الملفات وفق معايير معلنة</p></article>
+    <article class="partner"><span class="card-icon">⚖</span><h3>مكتب محاماة</h3><p>توثيق الإقرارات و NDA والبحث الفكري</p></article>
+    <article class="partner"><span class="card-icon">ض</span><h3>خدمة ضامن (عِلم)</h3><p>إدارة الضمان المالي حتى إتمام الصفقة</p></article>
+  </div>
+</div></section>
+
+<section class="block" id="cta"><div class="wrap">
+  <h2 class="section-title">كن أول من يعرف.</h2>
+  <p class="section-sub">المنصة قيد التطوير. سجّل اهتمامك الآن.</p>
+  <form class="form-box" id="waitlistForm">
+    <div class="form-grid">
+      <div><label>الاسم</label><input class="field" name="name" required placeholder="اسمك الكامل"></div>
+      <div><label>البريد الإلكتروني</label><input class="field" name="email" type="email" required placeholder="you@email.com"></div>
+      <div><label>الجوال</label><input class="field" name="phone" required placeholder="05xxxxxxxx"></div>
+      <div><label>أنا:</label>
+        <div class="roles">
+          <label class="role"><input type="radio" name="role" value="seller" required> بائع فكرة</label>
+          <label class="role"><input type="radio" name="role" value="buyer"> مشتري</label>
+          <label class="role"><input type="radio" name="role" value="advisor"> مستشار</label>
+        </div>
+      </div>
+      <button class="btn btn-primary" type="submit" style="width:100%">سجّل اهتمامي</button>
+      <p class="form-msg" id="formMsg">تم تسجيل اهتمامك.</p>
+    </div>
+  </form>
+</div></section>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <div class="logo" style="justify-content:center;margin-bottom:10px">مِلْكية</div>
+    <p>حيث تُصان الأفكار.</p>
+    <div class="foot-links"><a href="#">سياسة الخصوصية</a><a href="#" onclick="showTermsModal();return false">الشروط والأحكام</a><a href="#" onclick="openContact();return false">تواصل معنا</a></div>
+    <small>© ٢٠٢٥ جميع الحقوق محفوظة.</small>
+  </div>
+</footer>
+</div>
+
+<div id="view-auth" class="hidden" style="min-height:100vh;padding:24px">
+  <div class="auth-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <div class="logo">مِلْكية</div>
+      <div style="display:flex;gap:8px">
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+        <button class="btn btn-ghost btn-sm" onclick="showLanding()">العودة</button>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:20px">
+      <button class="btn btn-sm" id="tabLogin" onclick="showAuth('login')">دخول</button>
+      <button class="btn btn-sm" id="tabReg" onclick="showAuth('register')">حساب جديد</button>
+    </div>
+    <form id="loginForm" class="form-grid">
+      <div><label>اسم المستخدم</label><input class="field" name="username" required></div>
+      <div><label>كلمة المرور</label>
+        <div class="pass-wrap"><input class="field" name="password" id="loginPass" type="password" required>
+        <button class="eye-btn" type="button" onclick="togglePass('loginPass',this)">👁</button></div>
+      </div>
+      <button class="btn btn-primary" type="submit">دخول المنصة</button>
+    </form>
+    <form id="registerForm" class="form-grid hidden">
+      <div><label>الاسم الكامل</label><input class="field" name="name" required></div>
+      <div><label>اسم المستخدم</label><input class="field" name="username" required></div>
+      <div><label>البريد</label><input class="field" name="email" type="email" required></div>
+      <div><label>الجوال</label><input class="field" name="phone" required></div>
+      <div><label>كلمة المرور</label>
+        <div class="pass-wrap"><input class="field" name="password" id="regPass" type="password" required minlength="4">
+        <button class="eye-btn" type="button" onclick="togglePass('regPass',this)">👁</button></div>
+      </div>
+      <div><label>الدور</label>
+        <select class="field" name="role">
+          <option value="seller">صاحب فكرة / بائع</option>
+          <option value="buyer">مشتري</option>
+          <option value="advisor">مستشار</option>
+        </select>
+      </div>
+      <div>
+        <label style="margin-bottom:8px">الشروط والأحكام</label>
+        <div style="max-height:220px;overflow-y:auto;background:var(--bg3);border:1px solid var(--glassb);border-radius:14px;padding:18px;margin-bottom:14px;font-size:.88rem;color:var(--ink2);line-height:1.8">
+          <h4 style="color:var(--teal);margin:14px 0 8px">١. قبول الشروط</h4><p>باستخدامك منصة مِلْكية فإنك توافق على جميع الشروط.</p>
+          <h4 style="color:var(--teal);margin:14px 0 8px">٢. طبيعة المنصة</h4><p>مِلْكية منصة وسيطة تربط أصحاب الأفكار بالمشترين.</p>
+          <h4 style="color:var(--teal);margin:14px 0 8px">٣. مسؤوليات البائع</h4><p>يُقرّ البائع بأنه المالك الشرعي.</p>
+          <h4 style="color:var(--teal);margin:14px 0 8px">٤. مسؤوليات المشتري</h4><p>يلتزم بتوقيع NDA قبل الاطلاع.</p>
+          <h4 style="color:var(--teal);margin:14px 0 8px">٥. الضمان المالي</h4><p>عبر خدمة «ضامن» من عِلم.</p>
+          <h4 style="color:var(--teal);margin:14px 0 8px">٦. الملكية الفكرية</h4><p>تنتقل بعد إتمام الصفقة.</p>
+          <h4 style="color:var(--teal);margin:14px 0 8px">٧. منع الاحتيال</h4><p>أي احتيال يؤدي لإيقاف الحساب.</p>
+          <h4 style="color:var(--teal);margin:14px 0 8px">٨. حماية البيانات</h4><p>على سيرفرات آمنة.</p>
+          <h4 style="color:var(--teal);margin:14px 0 8px">٩. التعديلات</h4><p>تحتفظ المنصة بحق التعديل.</p>
+          <h4 style="color:var(--teal);margin:14px 0 8px">١٠. القانون المطبق</h4><p>أنظمة المملكة العربية السعودية.</p>
+        </div>
+        <label style="display:flex;align-items:flex-start;gap:12px;padding:14px;background:var(--bg3);border:1px solid var(--line);border-radius:14px;cursor:pointer">
+          <input type="checkbox" name="agree" id="agreeTerms" required style="width:18px;height:18px;accent-color:#0f766e;margin-top:3px">
+          <label for="agreeTerms" style="cursor:pointer;color:var(--ink2);font-size:.9rem;margin:0">أقرّ بأنني قرأت وفهمت جميع الشروط والأحكام، وأوافق عليها دون تحفظ.</label>
+        </label>
+      </div>
+      <button class="btn btn-primary" type="submit" id="regBtn" disabled>إنشاء الحساب</button>
+    </form>
+    <p id="authErr" class="hint" style="color:var(--rose-soft)"></p>
+  </div>
+</div>
+
+<div id="view-app" class="app hidden">
+  <aside class="side" id="sidebar"></aside>
+  <section class="main">
+    <div class="appbar">
+      <div>
+        <h2 id="pageTitle">لوحة التحكم</h2>
+        <div class="hint" id="pageSub"></div>
+      </div>
+      <div class="topnav-actions">
+        <button class="contact-btn" onclick="openContact();event.stopPropagation()" title="اتصل بنا">📞</button>
+        <button class="ai-btn" onclick="toggleAi(event)" title="مساعد مِلْكية"><span class="ai-sun">☀</span><span>AI</span></button>
+        <button class="theme-toggle" onclick="toggleTheme()" title="تبديل الوضع">🌙</button>
+        <div id="userChip"></div>
+      </div>
+    </div>
+    <div id="page"></div>
+  </section>
+</div>
+<div class="page-glow"></div>
+<button class="ai-fab" id="aiFab" type="button" onclick="toggleAi(event)" title="مساعد مِلْكية"><span class="ai-sun">☀</span><span>AI</span></button>
+<div class="ai-panel" id="aiPanel">
+  <div class="ai-head">
+    <div style="flex:1">
+      <b>مساعد مِلْكية</b>
+      <div class="hint">للمنصة فقط — لا يجيب خارج مِلْكية</div>
+    </div>
+    <div style="display:flex;gap:6px;align-items:center">
+      <button class="ai-ico" type="button" title="إغلاق" onclick="toggleAi(false)">✕</button>
+      <button class="ai-ico" type="button" title="حذف المحادثة" onclick="clearAiChat()">🗑</button>
+      <button class="ai-ico" type="button" title="السجل" onclick="showAiHistory()">🕒</button>
+    </div>
+  </div>
+  <div class="ai-msgs" id="aiMsgs"></div>
+  <form class="ai-form" id="aiForm">
+    <input class="field" id="aiQ" placeholder="اسأل عن صفحة أو خطوة داخل مِلْكية" autocomplete="off">
+    <button class="btn btn-primary btn-sm" type="submit">إرسال</button>
+  </form>
+</div>
+<div class="modal" id="modal"><div class="modal-box" id="modalBox"></div></div>
+
+<script>
+const STATUS={review:{label:"قيد الفحص",color:"var(--muted)"},available:{label:"متاح",color:"var(--teal)"},negotiating:{label:"قيد التفاوض",color:"var(--amber-soft)"},sold:{label:"مُباع",color:"var(--lav)"},cancelled:{label:"ملغاة",color:"var(--rose-soft)"},free:{label:"مجانية",color:"var(--ink2)"}};
+const ROLES={admin:"أدمن",seller:"صاحب فكرة",buyer:"مشتري",advisor:"مستشار"};
+
+const NDA_PLATFORM_TEXT = "باستخدامك مِلْكية تتعهد بالتعامل بحسن نية، وعدم تقديم بيانات كاذبة أو مضلّلة، وعدم إساءة استخدام الحساب أو أنظمة الفحص والضمان. كل ما تطلّع عليه من آليات داخلية أو بيانات مستخدمين يبقى سرياً، وتلتزم بالمصداقية في كل إقرار أو توقيع داخل المنصة.";
+const NDA_IDEAS_TEXT = "أي فكرة أو نبذة أو ملف تطلع عليه داخل المنصة سرّ خاص بصاحبه. لا تنسخه ولا تشاركه ولا تستخدمه خارج صفقة موافق عليها عبر مِلْكية. الاطلاع بعد التوقيع لا يمنحك ملكية الفكرة ولا حق تطويرها إلا بعد إتمام البيع أو إذن كتابي من المالك.";
+
+const DOCS = {
+  seller: [
+    {id:"p_nda",t:"اتفاقية سرية المنصة والالتزام بالمصداقية",d:NDA_PLATFORM_TEXT,r:"mandatory",src:"نظام",sign:true,phase:"onboard"},
+    {id:"i_nda",t:"اتفاقية سرية الأفكار",d:NDA_IDEAS_TEXT,r:"mandatory",src:"نظام",sign:true,phase:"onboard"},
+    {id:"s1",t:"إقرار ملكية الفكرة",d:"تؤكد فيه أنك المالك الشرعي.",r:"mandatory",src:"نظام",sign:true,phase:"onboard"},
+    {id:"s2",t:"إقرار صحة المعلومات",d:"تؤكد صحة المعلومات.",r:"mandatory",src:"نظام",sign:true,phase:"onboard"},
+    {id:"s4",t:"اتفاقية الشراكة مع المنصة",d:"تنظم العلاقة.",r:"mandatory",src:"نظام",sign:true,phase:"onboard"},
+    {id:"s5",t:"إقرار عدم البيع المزدوج",d:"عدم البيع المزدوج.",r:"mandatory",src:"نظام",sign:true,phase:"onboard"},
+    {id:"s8",t:"بحث الحماية الفكرية",d:"يجريه الفريق الإداري قبل الاعتماد — لا يوقّعه البائع.",r:"mandatory",src:"نظام",sign:false,phase:"review"},
+    {id:"s3",t:"اتفاقية نقل الملكية",d:"تُوقَّع عند إتمام البيع.",r:"mandatory",src:"نظام",sign:true,phase:"deal"},
+    {id:"s6",t:"شهادة تسجيل العلامة التجارية",d:"إن وُجدت.",r:"optional",src:"اختياري",sign:false,phase:"optional"},
+    {id:"s7",t:"براءة الاختراع",d:"إن وُجدت.",r:"optional",src:"اختياري",sign:false,phase:"optional"}
+  ],
+  buyer: [
+    {id:"p_nda",t:"اتفاقية سرية المنصة والالتزام بالمصداقية",d:NDA_PLATFORM_TEXT,r:"mandatory",src:"نظام",sign:true,phase:"onboard"},
+    {id:"i_nda",t:"اتفاقية سرية الأفكار",d:NDA_IDEAS_TEXT,r:"mandatory",src:"نظام",sign:true,phase:"onboard"},
+    {id:"b1",t:"اتفاقية عدم الإفصاح (NDA)",d:"قبل الاطلاع على التفاصيل والملفات.",r:"mandatory",src:"نظام",sign:true,phase:"deal"},
+    {id:"b4",t:"عقد الضمان (Escrow)",d:"عند تحويل المبلغ للضمان.",r:"mandatory",src:"نظام",sign:true,phase:"deal"},
+    {id:"b2",t:"اتفاقية الشراء",d:"عند تأكيد الشراء.",r:"mandatory",src:"نظام",sign:true,phase:"deal"},
+    {id:"b3",t:"إقرار الاستلام",d:"عند تأكيد استلام الملفات.",r:"mandatory",src:"نظام",sign:true,phase:"deal"},
+    {id:"b5",t:"إقرار عدم إعادة البيع",d:"بعد نقل الملكية.",r:"mandatory",src:"نظام",sign:true,phase:"deal"},
+    {id:"b6",t:"إقرار الاستخدام المشروع",d:"بعد نقل الملكية.",r:"mandatory",src:"نظام",sign:true,phase:"deal"}
+  ],
+  advisor: [
+    {id:"p_nda",t:"اتفاقية سرية المنصة والالتزام بالمصداقية",d:NDA_PLATFORM_TEXT,r:"mandatory",src:"نظام",sign:true,phase:"onboard"},
+    {id:"i_nda",t:"اتفاقية سرية الأفكار",d:NDA_IDEAS_TEXT,r:"mandatory",src:"نظام",sign:true,phase:"onboard"},
+    {id:"a1",t:"اتفاقية المستشار",d:"تنظم العلاقة.",r:"mandatory",src:"نظام",sign:true,phase:"onboard"},
+    {id:"a2",t:"اتفاقية عدم الإفصاح",d:"السرية.",r:"mandatory",src:"نظام",sign:true,phase:"onboard"},
+    {id:"a3",t:"إقرار الخبرة",d:"خبرتك في المجال.",r:"mandatory",src:"نظام",sign:false,phase:"onboard"}
+  ]
+};
+
+const DEFAULT_OFFICIAL = {
+  legal:[
+    {t:"اتفاقية سرية المنصة والالتزام بالمصداقية",d:NDA_PLATFORM_TEXT,r:"mandatory",src:"نظام"},
+    {t:"اتفاقية سرية الأفكار",d:NDA_IDEAS_TEXT,r:"mandatory",src:"نظام"},
+    {t:"اتفاقية عدم الإفصاح (NDA)",d:"يوقّعها المشتري قبل الاطلاع.",r:"mandatory",src:"نظام"},
+    {t:"إقرار ملكية الفكرة",d:"المالك الشرعي.",r:"mandatory",src:"نظام"},
+    {t:"اتفاقية نقل الملكية",d:"عند إتمام البيع.",r:"mandatory",src:"نظام"},
+    {t:"إقرار صحة المعلومات",d:"صحة المعلومات.",r:"mandatory",src:"نظام"},
+    {t:"اتفاقية الشراكة مع المنصة",d:"العلاقة مع المنصة.",r:"mandatory",src:"نظام"},
+    {t:"سياسة الخصوصية",d:"جمع البيانات.",r:"mandatory",src:"نظام"},
+    {t:"شهادة تسجيل العلامة التجارية",d:"إن وُجدت.",r:"optional",src:"اختياري"},
+    {t:"براءة الاختراع",d:"إن وُجدت.",r:"optional",src:"اختياري"},
+    {t:"بحث الحماية الفكرية",d:"وزارة التجارة.",r:"mandatory",src:"نظام"},
+    {t:"عقد Escrow مع خدمة ضامن",d:"احتجاز المبلغ.",r:"mandatory",src:"نظام"}
+  ],
+  tech:[
+    {t:"وصف تقني مفصل",d:"المكونات التقنية.",r:"mandatory",src:"نظام"},
+    {t:"النموذج الأولي (Prototype)",d:"إن وُجد.",r:"optional",src:"اختياري"},
+    {t:"التصاميم (UI/UX)",d:"إن وُجدت.",r:"optional",src:"اختياري"},
+    {t:"الأكواد المصدرية",d:"إن وُجدت.",r:"optional",src:"اختياري"},
+    {t:"متطلبات البنية التحتية",d:"سيرفرات وقواعد بيانات.",r:"mandatory",src:"نظام"},
+    {t:"خطة الأمان والحماية",d:"حماية البيانات.",r:"mandatory",src:"نظام"},
+    {t:"اختبار الجدوى التقنية",d:"قابلية التنفيذ.",r:"mandatory",src:"نظام"},
+    {t:"خطة التطوير المستقبلية",d:"الميزات القادمة.",r:"optional",src:"اختياري"}
+  ],
+  finance:[
+    {t:"النموذج المالي",d:"الإيرادات والتكاليف.",r:"mandatory",src:"نظام"},
+    {t:"التوقعات المالية ٣ سنوات",d:"Excel/Sheets.",r:"mandatory",src:"نظام"},
+    {t:"تحليل التكاليف",d:"تكاليف التشغيل.",r:"mandatory",src:"نظام"},
+    {t:"مصادر التمويل",d:"رأس المال.",r:"mandatory",src:"نظام"},
+    {t:"نموذج الإيرادات",d:"اشتراك، عمولة.",r:"mandatory",src:"نظام"},
+    {t:"نقطة التعادل (Break-even)",d:"متى الربح؟",r:"mandatory",src:"نظام"},
+    {t:"تقييم الفكرة",d:"تحديد السعر.",r:"mandatory",src:"نظام"},
+    {t:"خطة الضمان المالي",d:"احتجاز المبلغ.",r:"mandatory",src:"نظام"},
+    {t:"الالتزامات الضريبية",d:"القيمة المضافة.",r:"mandatory",src:"نظام"}
+  ]
+};
+
+const DEFAULT_CONSULT = [
+  {id:"cons1",text:"استشارة مجانية (٣ استشارات شهرياً)",count:3,cost:0,free:true},
+  {id:"cons2",text:"استشارة قانونية إضافية",cost:200,free:false},
+  {id:"cons3",text:"استشارة تقنية إضافية",cost:250,free:false},
+  {id:"cons4",text:"استشارة مالية إضافية",cost:300,free:false},
+  {id:"cons5",text:"مراجعة ملف الفكرة",cost:500,free:false}
+];
+
+const db={
+  get(k,f){try{return JSON.parse(localStorage.getItem("milkia_"+k))??f}catch{return f}},
+  set(k,v){localStorage.setItem("milkia_"+k,JSON.stringify(v))},
+  users(){return this.get("users",[])}, ideas(){return this.get("ideas",[])}, logs(){return this.get("logs",[])},
+  saveUsers(v){this.set("users",v)}, saveIdeas(v){this.set("ideas",v)},
+  log(text){const logs=this.logs();logs.unshift({text,at:new Date().toISOString()});this.set("logs",logs.slice(0,80))}
+};
+function uid(){return "id_"+Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4)}
+function now(){return new Date().toISOString()}
+function fmt(d){return new Date(d).toLocaleString("ar-SA")}
+function session(){return db.get("session",null)}
+function setSession(u){db.set("session",u?{id:u.id,username:u.username}:null)}
+function currentUser(){const s=session();return s?db.users().find(u=>u.id===s.id)||null:null}
+function hashName(str){let h=0;for(let i=0;i<str.length;i++)h=((h<<5)-h+str.charCodeAt(i))|0;return "fp_"+Math.abs(h)}
+async function sha256(text){
+  const buf=await crypto.subtle.digest("SHA-256", new TextEncoder().encode("milkia::"+text));
+  return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,"0")).join("");
+}
+async function passMatches(user, raw){
+  if(user.passwordHash) return user.passwordHash===await sha256(raw);
+  return user.password===raw;
+}
+async function upgradePass(user, raw){
+  if(user.passwordHash) return;
+  const hash=await sha256(raw);
+  db.saveUsers(db.users().map(u=>u.id===user.id?{...u,passwordHash:hash,password:undefined}:u));
+}
+function feeSettings(){return db.get("fees",{commissionRate:0.08,adminFee:50})}
+async function hydratePasswords(){
+  const users=db.users();
+  let changed=false;
+  for(const u of users){
+    if(u.passwordHash || !u.password) continue;
+    u.passwordHash=await sha256(u.password);
+    u.password=undefined;
+    changed=true;
+  }
+  if(changed) db.saveUsers(users);
+}
+function simBadge(extra=""){return `<span class="sim-badge" title="محاكاة للعرض — الربط الرسمي يتم لاحقاً مع الشريك">محاكاة${extra?" · "+extra:""}</span>`}
+function can(perm){
+  const u=currentUser();
+  if(!u) return false;
+  if(u.role!=="admin") return false;
+  const p=u.perms||[];
+  return p.includes("*") || p.includes(perm);
+}
+function canAny(list){return list.some(can)}
+const PAGE_PERMS={
+  review:"ideas.approve",
+  users:"users.view",
+  admins:"admins.manage",
+  analytics:"analytics.view",
+  logs:"logs.view",
+  checklist:"checklist.edit"
+};
+function seed(){
+  const users=db.users();
+  if(!users.find(u=>u.username==="admin")){
+    users.unshift({id:"admin_root",username:"admin",password:"1234",name:"مدير المنصة",email:"admin@milkia.sa",phone:"0500000000",role:"admin",status:"active",createdAt:now(),perms:["*"]});
+    db.saveUsers(users);
+  }
+  if(!db.get("consultations",null)) db.set("consultations",DEFAULT_CONSULT);
+  seedDemo();
+  const legal=db.get("official_legal",null);
+  if(legal && !legal.some(d=>d.t && d.t.indexOf("سرية المنصة")!==-1)){
+    legal.unshift(
+      {t:"اتفاقية سرية المنصة والالتزام بالمصداقية",d:NDA_PLATFORM_TEXT,r:"mandatory",src:"نظام"},
+      {t:"اتفاقية سرية الأفكار",d:NDA_IDEAS_TEXT,r:"mandatory",src:"نظام"}
+    );
+    db.set("official_legal",legal);
+  }
+  ["u_s1","u_s2","u_s3","u_s4"].forEach(id=>{
+    const s=new Set(db.get("signed_"+id,[]));
+    ["p_nda","i_nda","s1","s2","s4","s5"].forEach(x=>s.add(x));
+    db.set("signed_"+id,[...s]);
+  });
+  ["u_a9","u_a10"].forEach(id=>{
+    const s=new Set(db.get("signed_"+id,[]));
+    ["p_nda","i_nda","a1","a2"].forEach(x=>s.add(x));
+    db.set("signed_"+id,[...s]);
+  });
+}
+function seedDemo(){
+  if(db.get("demoSeed","")=== "v4") return;
+  const extra=[
+    {id:"u_s1",username:"1",password:"1234",name:"فهد العتيبي",email:"fahad@milkia.demo",phone:"0501111001",role:"seller",status:"active"},
+    {id:"u_s2",username:"2",password:"1234",name:"نورة القحطاني",email:"noura@milkia.demo",phone:"0501111002",role:"seller",status:"active"},
+    {id:"u_s3",username:"3",password:"1234",name:"سلطان الحربي",email:"sultan@milkia.demo",phone:"0501111003",role:"seller",status:"active"},
+    {id:"u_s4",username:"4",password:"1234",name:"لمى الدوسري",email:"lama@milkia.demo",phone:"0501111004",role:"seller",status:"active"},
+    {id:"u_b5",username:"5",password:"1234",name:"عبدالله الشمري",email:"abdullah@milkia.demo",phone:"0502222005",role:"buyer",status:"active"},
+    {id:"u_b6",username:"6",password:"1234",name:"هند الغامدي",email:"hind@milkia.demo",phone:"0502222006",role:"buyer",status:"active"},
+    {id:"u_b7",username:"7",password:"1234",name:"ماجد العنزي",email:"majid@milkia.demo",phone:"0502222007",role:"buyer",status:"active"},
+    {id:"u_b8",username:"8",password:"1234",name:"سارة المطيري",email:"sara@milkia.demo",phone:"0502222008",role:"buyer",status:"active"},
+    {id:"u_a9",username:"9",password:"1234",name:"خالد الاستشاري",email:"khaled@milkia.demo",phone:"0503333009",role:"advisor",status:"active"},
+    {id:"u_a10",username:"10",password:"1234",name:"ريم الاستشارية",email:"reem@milkia.demo",phone:"0503333010",role:"advisor",status:"active"}
+  ];
+  const users=db.users();
+  extra.forEach(u=>{
+    if(!users.find(x=>x.username===u.username || x.id===u.id)){
+      users.push({...u,createdAt:now(),agreedToTerms:true,agreedAt:now()});
+    }
+  });
+  db.saveUsers(users);
+  const demoIdeas=[
+    {id:"idea_d1",ownerId:"u_s1",title:"منصة توصيل أدوية للأحياء",summary:"ربط الصيدليات بالمنازل داخل الحي خلال 30 دقيقة.",description:"تطبيق يطلب الدواء من أقرب صيدلية مرخّصة مع تتبع السائق وتأكيد الهوية عند التسليم.",price:18000,category:"صحة",status:"available"},
+    {id:"idea_d2",ownerId:"u_s2",title:"تطبيق جدولة الصيانة المنزلية",summary:"حجز سبّاك وكهربائي بموعد ثابت وتقييم بعد الخدمة.",description:"سوق خدمات منزلية مع ضمان جودة ودفعة عند الإنجاز.",price:12000,category:"تجارة",status:"available"},
+    {id:"idea_d3",ownerId:"u_s3",title:"نظام نقاط ولاء للتموينات",summary:"بطاقة ولاء رقمية لصاحب التموين الصغير بدون اشتراك شهري ثقيل.",description:"QR عند الصندوق، نقاط تُستبدل بخصم، تقارير يومية للمالك.",price:9000,category:"تجارة",status:"negotiating",buyerId:"u_b5",nda:["u_b5"],escrow:true},
+    {id:"idea_d4",ownerId:"u_s4",title:"منصة تدريب مهني عن بعد",summary:"مسارات قصيرة للمهن المطلوبة في السوق السعودي.",description:"محتوى مسجّل + جلسة أسبوعية + شهادة إتمام من الجهة التدريبية الشريكة.",price:0,category:"تعليم",status:"free"},
+    {id:"idea_d5",ownerId:"u_s1",title:"تطبيق تتبع شحنات التجار الصغار",summary:"لوحة واحدة لتتبع شحنات سمسا وأرامكس والبريد.",description:"يربط حسابات الشحن ويعرض التأخير والتنبيهات للعميل النهائي.",price:22000,category:"تقنية",status:"sold",buyerId:"u_b6",nda:["u_b6"],escrow:true,released:true,certificate:{no:"MLK-2026-0041",at:now()}},
+    {id:"idea_d6",ownerId:"u_s2",title:"خدمة مقارنة التأمين الطبي للمنشآت",summary:"عرض عروض شركات التأمين للمنشأة الصغيرة في شاشة واحدة.",description:"يجمع العروض ويوضح التحمل والتغطية قبل قرار الشراء.",price:15000,category:"صحة",status:"review"},
+    {id:"idea_d7",ownerId:"u_s3",title:"تطبيق إدارة حلقات التحفيظ",summary:"حضور وغياب وتسميع حلقة التحفيظ للمعلم وولي الأمر.",description:"سجل تسميع يومي وتنبيه الغياب وتقرير شهري للحلقة.",price:7000,category:"تعليم",status:"cancelled"},
+    {id:"idea_d8",ownerId:"u_s4",title:"سوق أفكار طلاب الجامعات",summary:"يعرض مشاريع التخرج للمستثمر بعد فحص مبسّط.",description:"كل مشروع ملخص + ملف تقني + إمكانية تواصل عبر المنصة.",price:5000,category:"تعليم",status:"available"}
+  ];
+  const ideas=db.ideas();
+  demoIdeas.forEach(raw=>{
+    if(ideas.find(i=>i.id===raw.id)) return;
+    ideas.push({
+      files:[],buyerId:raw.buyerId||null,nda:raw.nda||[],escrow:!!raw.escrow,released:!!raw.released,
+      certificate:raw.certificate||null,createdAt:now(),summaryFp:hashName(raw.summary),note:"بيانات تجريبية",
+      ...raw
+    });
+  });
+  db.saveIdeas(ideas);
+  if(!db.get("consultTickets",null)){
+    db.set("consultTickets",[
+      {id:"ct1",userId:"u_s1",kind:"قانونية",item:"استشارة قانونية إضافية",status:"open",note:"هل أحتاج تسجيل علامة قبل العرض؟",at:now()},
+      {id:"ct2",userId:"u_b5",kind:"مالية",item:"استشارة مالية إضافية",status:"open",note:"كيف أقيّم سعر فكرة التموينات؟",at:now()},
+      {id:"ct3",userId:"u_s2",kind:"تقنية",item:"مراجعة ملف الفكرة",status:"done",note:"طلب مراجعة اكتمال ملف الصيانة.",at:now()}
+    ]);
+  }
+  extra.filter(u=>u.role==="seller").forEach(u=>db.set("signed_"+u.id,["s1","s2","s4","s5"]));
+  extra.filter(u=>u.role==="advisor").forEach(u=>db.set("signed_"+u.id,["a1","a2"]));
+  db.log("تعبئة بيانات تجريبية: مستخدمون 1–10 وأفكار وطلبات استشارة");
+  db.set("demoSeed","v4");
+}
+
+function applyTheme(){
+  const theme="light";
+  document.body.classList.toggle("light",theme==="light");
+  document.querySelectorAll(".theme-toggle").forEach(b=>b.textContent=theme==="light"?"☀️":"🌙");
+}
+function toggleTheme(){
+  const cur="light";
+  db.set("theme",cur==="dark"?"light":"dark");
+  applyTheme();
+}
+function isNarrow(){return window.matchMedia("(max-width:768px)").matches}
+function isMobileMode(){return isNarrow()}
+function applyDeviceMode(){
+  const mobile=isMobileMode();
+  const was=document.body.classList.contains("mode-mobile");
+  document.body.classList.toggle("mode-mobile", mobile);
+  document.body.classList.toggle("mode-desktop", !mobile);
+  db.set("deviceMode", mobile?"mobile":"desktop");
+  const inApp=currentUser() && !document.getElementById("view-app").classList.contains("hidden");
+  if(inApp && was!==mobile) renderSidebar();
+  applyCursorMode();
+  setAiReady();
+}
+
+function refreshLandingAuth(){
+  const box=document.getElementById("landingAuth");
+  if(!box) return;
+  const u=currentUser();
+  if(u && u.status==="active"){
+    box.innerHTML=`<button class="btn btn-primary btn-sm" onclick="enterApp(db.get('lastPage','dash'))">العودة للوحة</button>
+      <span class="badge">${esc(u.name)}</span>
+      <button class="btn btn-ghost btn-sm" onclick="logout()">خروج</button>`;
+  }else{
+    box.innerHTML=`<button class="btn btn-ghost btn-sm" onclick="showAuth('login')">دخول</button>
+      <button class="btn btn-primary btn-sm" onclick="showAuth('register')">ابدأ الآن</button>`;
+  }
+}
+function showLanding(){
+  document.getElementById("view-landing").classList.remove("hidden");
+  document.getElementById("view-auth").classList.add("hidden");
+  document.getElementById("view-app").classList.add("hidden");
+  refreshLandingAuth();
+  setAiReady();
+}
+function showAuth(tab){
+  document.getElementById("view-landing").classList.add("hidden");
+  document.getElementById("view-auth").classList.remove("hidden");
+  document.getElementById("view-app").classList.add("hidden");
+  const login=tab!=="register";
+  document.getElementById("loginForm").classList.toggle("hidden",!login);
+  document.getElementById("registerForm").classList.toggle("hidden",login);
+  document.getElementById("tabLogin").className="btn btn-sm "+(login?"btn-primary":"btn-ghost");
+  document.getElementById("tabReg").className="btn btn-sm "+(!login?"btn-primary":"btn-ghost");
+  document.getElementById("authErr").textContent="";
+  const regBtn=document.getElementById("regBtn");
+  if(regBtn) regBtn.disabled=!document.getElementById("agreeTerms")?.checked;
+  setAiReady();
+}
+function enterApp(page){
+  const u=currentUser();
+  if(!u) return showAuth("login");
+  if(u.status!=="active"){alert("الحساب غير مفعّل.");return showAuth("login")}
+  document.getElementById("view-landing").classList.add("hidden");
+  document.getElementById("view-auth").classList.add("hidden");
+  document.getElementById("view-app").classList.remove("hidden");
+  applyDeviceMode();
+  renderSidebar(); renderPage(page||db.get("lastPage","dash"));
+  applyCursorMode();
+  setAiReady();
+}
+function logout(){setSession(null);showLanding()}
+function goBrowse(){currentUser()?enterApp("market"):showAuth("login")}
+
+function renderSidebar(){
+  const u=currentUser();
+  const role=u.role;
+  const icon=(label)=>{
+    const map={
+      "لوحة التحكم":"🏠","تصفّح الأفكار":"🧭","رفع فكرة":"➕","أفكاري":"📁",
+      "مستنداتي":"📄","فحص الملفات":"🔍","الأقسام الرسمية":"⚖️",
+      "المستخدمون":"👥","المدراء والصلاحيات":"🔑","اعتماد الأفكار":"✔️",
+      "سجل العمليات":"📜","التحليل":"📊","تحليلي المالي":"💰","الاستشارات":"💬","الموقع":"🌐","خروج":"🚪",
+      "إعدادات التواصل":"📞","طلبات المقابلة":"📅","الأفكار المشتراة":"🛒","استشارتي المقدمة":"📌","المؤشر":"🫧","المؤشرات":"✨"
+    };
+    return map[label]||"•";
+  };
+  let items=[];
+  items.push(["dash","لوحة التحكم"]);
+  items.push(["market","تصفّح الأفكار"]);
+  if(role==="seller"||role==="admin"){
+    items.push(["submit","رفع فكرة"]);
+    items.push(["mine","أفكاري"]);
+  }
+  if(role==="buyer") items.push(["purchased","الأفكار المشتراة"]);
+  if(role==="advisor") items.push(["givenConsult","استشارتي المقدمة"]);
+  if(role!=="admin") items.push(["cursorSet","المؤشر"]);
+  if(role!=="admin") items.push(["docs","مستنداتي"]);
+  if(role==="buyer"||role==="seller") items.push(["myFinance","تحليلي المالي"]);
+  items.push(["consult","الاستشارات"]);
+  if(role==="admin"){
+    if(can("analytics.view")) items.push(["analytics","التحليل"]);
+    if(can("checklist.edit")) items.push(["checklist","فحص الملفات"]);
+    if(canAny(["docs.legal","docs.tech","docs.finance"])) items.push(["docsAdmin","الأقسام الرسمية"]);
+    if(can("users.view")) items.push(["users","المستخدمون"]);
+    if(can("admins.manage")) items.push(["admins","المدراء والصلاحيات"]);
+    if(can("ideas.approve")) items.push(["review","اعتماد الأفكار"]);
+    if(can("ideas.approve")) items.push(["meetings","طلبات المقابلة"]);
+    items.push(["contact","إعدادات التواصل"]);
+    items.push(["cursors","المؤشرات"]);
+    if(can("logs.view")) items.push(["logs","سجل العمليات"]);
+  }
+
+  const extra=[["site","الموقع"],["logout","خروج"]];
+  const all=[...items, ...extra];
+  const mobile=isMobileMode();
+  if(mobile){
+    const dock=[["dash","لوحة التحكم"],["market","تصفّح الأفكار"]];
+    const moreWanted=role==="seller"
+      ?["submit","mine","docs","myFinance","consult","site","logout"]
+      :role==="buyer"?["purchased","docs","myFinance","consult","site","logout"]
+      :role==="advisor"?["givenConsult","docs","consult","site","logout"]
+      :["submit","mine","meetings","contact","users","review","site","logout"];
+    const rest=[
+      ...moreWanted.map(id=>all.find(x=>x[0]===id)).filter(Boolean),
+      ...all.filter(x=>!["dash","market",...moreWanted].includes(x[0]))
+    ];
+    document.getElementById("sidebar").innerHTML=
+      dock.map(([id,t])=>`<button class="navitem" data-p="${id}" onclick="navGo('${id}')"><span>${icon(t)}</span><span>${t}</span></button>`).join("")+
+      `<button class="navitem" data-p="more" onclick="openMore()"><span>☰</span><span>المزيد</span></button>`;
+    document.getElementById("moreGrid").innerHTML=
+      rest.map(([id,t])=>`<button type="button" onclick="navGo('${id}')"><span style="font-size:1.2rem">${icon(t)}</span><span>${t}</span></button>`).join("");
+  }else{
+    document.getElementById("sidebar").innerHTML=
+      `<div class="logo"><span class="logo-mark">م</span>مِلْكية</div>`+
+      items.map(([id,t])=>`<button class="navitem" data-p="${id}" onclick="navGo('${id}')"><span style="font-size:1rem">${icon(t)}</span><span>${t}</span></button>`).join("")+
+      `<div class="grow"></div>`+
+      `<button class="navitem" onclick="navGo('site')"><span style="font-size:1rem">🌐</span><span>الموقع</span></button>`+
+      `<button class="navitem" onclick="navGo('logout')"><span style="font-size:1rem">🚪</span><span>خروج</span></button>`;
+  }
+  document.getElementById("userChip").innerHTML=`<button class="btn btn-ghost btn-sm chip-site" onclick="showLanding()">الموقع</button><span class="badge">${esc(u.name)} · ${ROLES[u.role]}</span>`;
+}
+function navGo(id){
+  closeMore();
+  if(id==="site") return showLanding();
+  if(id==="logout") return logout();
+  renderPage(id);
+}
+function openMore(){document.getElementById("moreSheet").classList.add("open")}
+function closeMore(){document.getElementById("moreSheet").classList.remove("open")}
+
+const ALLOWED_PAGES=["dash","market","docs","myFinance","consult","analytics","checklist","users","admins","review","logs","submit","mine","docsAdmin","contact","meetings"];
+function pageAllowed(page){
+  const u=currentUser();
+  if(!ALLOWED_PAGES.includes(page)) return false;
+  if(!u) return false;
+  if(PAGE_PERMS[page] && !can(PAGE_PERMS[page])) return false;
+  if(page==="docsAdmin" && !canAny(["docs.legal","docs.tech","docs.finance"])) return false;
+  if(page==="submit"||page==="mine") return u.role==="seller"||u.role==="admin";
+  if(page==="docs") return u.role!=="admin";
+  if(page==="myFinance") return u.role==="buyer"||u.role==="seller"||u.role==="admin";
+  return true;
+}
+function setAiReady(){
+  const inApp=currentUser() && !document.getElementById("view-app").classList.contains("hidden");
+  document.body.classList.toggle("ai-open-ready", !!inApp);
+}
+function aiKey(){const u=currentUser();return "aiChat_"+(u?u.id:"guest")}
+function loadAiChat(){return db.get(aiKey(),[])}
+function saveAiChat(list){db.set(aiKey(),list.slice(-40))}
+function renderAiMsgs(list){
+  const box=document.getElementById("aiMsgs");
+  box.innerHTML="";
+  list.forEach(m=>paintAi(m.who,m.text,m.action||null,false));
+  box.scrollTop=box.scrollHeight;
+}
+function toggleAi(force){
+  if(force && force.preventDefault){force.stopPropagation();force=undefined}
+  const p=document.getElementById("aiPanel");
+  const open=typeof force==="boolean"?force:!p.classList.contains("open");
+  p.classList.toggle("open", open);
+  if(open){
+    const hist=loadAiChat();
+    if(!hist.length){
+      const hello={who:"bot",text:"أهلاً، أنا مساعد مِلْكية الآلي. اسألني عن الصفحات، الأسعار، التوثيق، أو أي شيء يخص المنصة فقط. لا أجيب خارج مِلْكية.",action:null};
+      saveAiChat([hello]);
+      renderAiMsgs([hello]);
+    }else renderAiMsgs(hist);
+  }
+}
+function paintAi(who,text,action,persist){
+  const box=document.getElementById("aiMsgs");
+  const div=document.createElement("div");
+  div.className="ai-bubble "+who;
+  div.innerHTML=`<div>${esc(text)}</div>`+(action && pageAllowed(action.page)?`<div style="margin-top:8px"><button class="btn btn-primary btn-sm" type="button" onclick="aiGo('${action.page}')">${esc(action.label)}</button></div>`:"");
+  box.appendChild(div);
+  box.scrollTop=box.scrollHeight;
+  if(persist!==false){
+    const hist=loadAiChat(); hist.push({who,text,action:action||null}); saveAiChat(hist);
+  }
+}
+function aiPush(who,text,action){paintAi(who,text,action,true)}
+function clearAiChat(){
+  db.set(aiKey(),[]);
+  document.getElementById("aiMsgs").innerHTML="";
+  aiPush("bot","تم مسح المحادثة. اسأل عن مِلْكية فقط.",null);
+}
+function showAiHistory(){
+  const hist=loadAiChat().filter(m=>m.who==="me");
+  if(!hist.length) return alert("لا سجل أسئلة بعد على هذا الحساب.");
+  alert("سجل أسئلتك:\n\n"+hist.map(m=>"• "+m.text).join("\n"));
+}
+function togglePass(id,btn){
+  const el=document.getElementById(id); if(!el) return;
+  el.type=el.type==="password"?"text":"password";
+  if(btn) btn.textContent=el.type==="password"?"👁":"🙈";
+}
+function aiGo(page){
+  if(!pageAllowed(page)) return alert("هذه الصفحة غير متاحة لحسابك.");
+  toggleAi(false);
+  if(document.getElementById("view-app").classList.contains("hidden")){
+    if(!currentUser()) return showAuth("login");
+    enterApp(page);
+  }else renderPage(page);
+}
+function milkiaAnswer(q){
+  const t=(q||"").trim();
+  const s=t.replace(/[؟?.,!]/g," ").toLowerCase();
+  const off=/طقس|أخبار|سياسه|سياسة العالم|وصفه|طبخ|رياضة|كرة|أسهم أبل|ترامب|برمجة بايثون العامة|ترجمة رواية|شعر|نكت/.test(s);
+  if(!t) return {text:"اكتب سؤالاً عن مِلْكية: صفحة، فكرة، شراء، فحص، ضمان، أو استشارة.",action:null};
+  if(off){
+    return {text:"لا أقدم معلومات خارج منصة مِلْكية. اسأل عن الصفحات أو خطوات البيع والشراء داخل المنصة فقط.",action:null};
+  }
+  const hits=[
+    {k:/لوح|تحكم|إحصا|dash/,text:"لوحة التحكم تعرض ملخص أفكارك والمستندات الموقّعة وحالات الفحص.",page:"dash",label:"اذهب للوحة التحكم"},
+    {k:/سوق|تصفح|أفكار معروض|market/,text:"تصفّح الأفكار يعرض المتاحة والمجانية فقط. قيد الفحص لا يظهر للمشتري.",page:"market",label:"تصفّح الأفكار"},
+    {k:/رفع|أضف فكرة|submit|ارسل للفحص/,text:"ارفع الفكرة من «رفع فكرة» بعد توقيع مستندات التسجيل واتفاقيتي السرية. الحالة تبدأ قيد الفحص.",page:"submit",label:"رفع فكرة"},
+    {k:/أفكاري|mine|ملفاتي المرفوعة/,text:"أفكاري تعرض ما رفعته أنت وحالته: فحص، متاح، تفاوض، مباع، ملغاة أو مجانية.",page:"mine",label:"أفكاري"},
+    {k:/مستند|توقيع|سريّة|سرية|nda|مصداق/,text:"في مستنداتي توقّع اتفاقية سرية المنصة واتفاقية سرية الأفكار ثم إقرارات التسجيل. NDA الشراء تظهر عند الصفقة.",page:"docs",label:"مستنداتي"},
+    {k:/مالي|عمول|صافي|escrow|ضمان|ضامن|رسوم/,text:"التحليل المالي يعرض صفقاتك. في النموذج تُحتجز القيمة ثم تُعرض عمولة 8٪ ورسوم 50 ر.س قبل التأكيد. التحويل البنكي محاكاة حتى ربط ضامن.",page:"myFinance",label:"تحليلي المالي"},
+    {k:/استشار/,text:"الاستشارات: ثلاث مجانية شهرياً ثم بنود مدفوعة. أرسل طلباً من الصفحة ويظهر للمستشار والإدارة.",page:"consult",label:"الاستشارات"},
+    {k:/فحص|checklist|اكتمال/,text:"فحص الملفات قائمة معايير الاكتمال. لا يضمن نجاح الفكرة، يضمن اكتمال الملف قبل الاعتماد.",page:"checklist",label:"فحص الملفات"},
+    {k:/اعتماد|مراجعه|مراجعة أفكار/,text:"اعتماد الأفكار للأدمن بعد الفحص: متاح أو مجانية أو إعادة أو إلغاء.",page:"review",label:"اعتماد الأفكار"},
+    {k:/مستخدم|حسابات/,text:"إدارة الحسابات من لوحة الأدمن: إضافة وتعديل وإيقاف. كل مستخدم له مساعد مستقل.",page:"users",label:"المستخدمون"},
+    {k:/صلاح|مدراء/,text:"المدراء والصلاحيات تحدد من يرى الاعتماد والفحص والأقسام الرسمية.",page:"admins",label:"المدراء والصلاحيات"},
+    {k:/تحليل(?! مالي)|إحصائيات المنصة|analytics/,text:"التحليل للأدمن: أرقام الأفكار والمستخدمين والحالات.",page:"analytics",label:"التحليل"},
+    {k:/سجل|عمليات/,text:"سجل العمليات يسجّل التسجيل والرفع والاعتماد والطلبات.",page:"logs",label:"سجل العمليات"},
+    {k:/قانوني|تقني|مالي رسمي|أقسام رسمية/,text:"الأقسام الرسمية ثلاثة: قانوني وتقني ومالي. تظهر للمستشارين بحسب الاختصاص عبر الإدارة.",page:"docsAdmin",label:"الأقسام الرسمية"},
+    {k:/حالة|قيد الفحص|متاح|مباع|مجانية/,text:"الحالات: قيد الفحص ثم متاح بعد الاعتماد، ثم قيد التفاوض بعد NDA والضمان، ثم مُباع مع شهادة. الملغاة تُسحب. المجانية بلا مقابل."},
+    {k:/شهادة/,text:"بعد إتمام البيع تُصدر شهادة برقم MLK وتاريخ وأطراف الصفقة."},
+    {k:/شروط|أحكام/,text:"الشروط عند التسجيل: المنصة وسيطة، البائع مالك، المشتري يوقّع NDA، الضمان عبر ضامن، والقانون السعودي."},
+    {k:/محاكاة|نفاذ|عِلم|علم/,text:"النفاذ وضامن وتوقيع المحامي وبحث الحماية الفكرية موسومة محاكاة حتى الربط الرسمي."}
+  ];
+  const found=hits.find(h=>h.k.test(s));
+  if(found){
+    const action=found.page?{label:found.label,page:found.page}:null;
+    const allowed=!action || pageAllowed(action.page);
+    return {text:found.text + (action && !allowed?" هذا القسم غير ظاهر لحسابك الحالي.":""), action: allowed?action:null};
+  }
+  return {text:"هذا السؤال خارج نطاق مساعد مِلْكية أو غير مربوط بصفحة معروفة. اسأل عن: اللوحة، السوق، رفع فكرة، المستندات، السرية، الفحص، الاعتماد، الضمان، الاستشارات، أو الحسابات.",action:null};
+}
+document.getElementById("aiForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const inp=document.getElementById("aiQ");
+  const q=inp.value.trim();
+  if(!q) return;
+  aiPush("me",q,null);
+  inp.value="";
+  const ans=milkiaAnswer(q);
+  aiPush("bot",ans.text,ans.action);
+});
+function setActiveNav(page){document.querySelectorAll(".navitem").forEach(el=>el.classList.toggle("active",el.dataset.p===page))}
+function statusBadge(st){const s=STATUS[st]||STATUS.review;return `<span class="badge" style="border-color:${s.color};color:${s.color}">${s.label}</span>`}
+
+function renderPage(page){
+  const u=currentUser();
+  if(!u) return showAuth("login");
+  if(page==="docsAdmin" && !canAny(["docs.legal","docs.tech","docs.finance"])){
+    document.getElementById("page").innerHTML=`<div class="admin-banner">لا صلاحية لعرض الأقسام الرسمية.</div>`;
+    return;
+  }
+  if(PAGE_PERMS[page] && !can(PAGE_PERMS[page])){
+    document.getElementById("page").innerHTML=`<div class="admin-banner">لا صلاحية لفتح هذا القسم.</div>`;
+    return;
+  }
+  db.set("lastPage", page);
+  setActiveNav(page);
+  const titles={
+    dash:["لوحة التحكم","ملخص الحساب والمسار"],
+    market:["سوق الأفكار","الأفكار المتاحة والمعروضة"],
+    submit:["رفع فكرة","أرفق الملفات كاملة"],
+    mine:["أفكاري","تابع الحالة"],
+    docs:["مستنداتي","المستندات الخاصة بدورك"],
+    docsAdmin:["الأقسام الرسمية","قانوني، تقني، مالي"],
+    checklist:["فحص الملفات","تحقق من الاكتمال"],
+    users:["المستخدمون","إضافة وتفعيل"],
+    admins:["المدراء والصلاحيات","إضافة مدراء"],
+    review:["اعتماد الأفكار","فحص واعتماد"],
+    logs:["سجل العمليات","أثر كل خطوة"],
+    analytics:["التحليل","نظرة شاملة على المنصة"],
+    myFinance:["تحليلي المالي","أرباحك ومدفوعاتك"],
+    consult:["الاستشارات","البنود والأسعار"],
+    contact:["إعدادات التواصل","وسائل الاتصال بالمنصة"],
+    meetings:["طلبات المقابلة","تنسيق المقابلات بين الأطراف"],
+    purchased:["الأفكار المشتراة","ما اشتريته عبر المنصة"],
+    givenConsult:["استشارتي المقدمة","تحليل الردود والمستخدمين"],
+    cursorSet:["شكل المؤشر","اختر من المؤشرات المفعّلة لدورك"],
+    cursors:["المؤشرات","إضافة وتفعيل مؤشرات المنصة"]
+  };
+  const t=titles[page]||titles.dash;
+  document.getElementById("pageTitle").textContent=t[0];
+  document.getElementById("pageSub").textContent=t[1];
+  const el=document.getElementById("page");
+  if(page==="dash") el.innerHTML=pageDash(u);
+  else if(page==="market") el.innerHTML=pageMarket(u);
+  else if(page==="submit") el.innerHTML=pageSubmit();
+  else if(page==="mine") el.innerHTML=pageMine(u);
+  else if(page==="docs") el.innerHTML=pageDocs(u);
+  else if(page==="docsAdmin") el.innerHTML=pageDocsAdmin();
+  else if(page==="checklist") el.innerHTML=pageChecklist();
+  else if(page==="users") el.innerHTML=pageUsers();
+  else if(page==="admins") el.innerHTML=pageAdmins();
+  else if(page==="review") el.innerHTML=pageReview();
+  else if(page==="logs") el.innerHTML=pageLogs();
+  else if(page==="analytics") el.innerHTML=pageAnalytics();
+  else if(page==="myFinance") el.innerHTML=pageMyFinance(u);
+  else if(page==="consult") el.innerHTML=pageConsult();
+  else if(page==="contact") el.innerHTML=pageContactSettings();
+  else if(page==="meetings") el.innerHTML=pageMeetings();
+  else if(page==="purchased") el.innerHTML=pagePurchased(u);
+  else if(page==="givenConsult") el.innerHTML=pageGivenConsult(u);
+  else if(page==="cursorSet") el.innerHTML=pageCursorSet();
+  else if(page==="cursors") el.innerHTML=pageCursorsAdmin();
+  bindPage(page);
+  if(page==="docsAdmin"){
+    setTimeout(()=>{
+      const firstBtn=document.querySelector(".docs-tab");
+      if(firstBtn) switchDocTab("legal",firstBtn);
+    },0);
+  }
+}
+
+function pageDash(u){
+  const ideas=db.ideas();
+  const mine=ideas.filter(i=>i.ownerId===u.id);
+  const roleDocs=(DOCS[u.role]||[]).filter(d=>d.phase==="onboard"&&d.sign);
+  const signedDocs=(db.get("signed_"+u.id,[])).filter(id=>roleDocs.some(d=>d.id===id)).length;
+  const totalDocs=roleDocs.length;
+  const myIdeasCount = u.role==="admin" ? ideas.length : mine.length;
+  const reviewCount = ideas.filter(i=>i.status==="review" && (u.role==="admin"||i.ownerId===u.id)).length;
+  const availableCount = ideas.filter(i=>(i.status==="available"||i.status==="free") && (u.role==="admin"||i.ownerId===u.id)).length;
+
+  return `<div class="stats">
+    <div class="stat"><span class="hint">${u.role==="admin"?"كل الأفكار":"أفكاري"}</span><b>${myIdeasCount}</b></div>
+    <div class="stat"><span class="hint">قيد الفحص</span><b>${reviewCount}</b></div>
+    <div class="stat"><span class="hint">معروضة</span><b>${availableCount}</b></div>
+    <div class="stat"><span class="hint">المستندات الموقّعة</span><b>${signedDocs}/${totalDocs}</b></div>
+  </div>
+  <div class="admin-banner" style="margin-bottom:16px">هذه بيئة عرض. الخدمات الرسمية (النفاذ، ضامن، البحث في الحماية الفكرية، توقيع المحامي) موسومة بشارة <b>محاكاة</b> حتى يربطها الشريك.</div>
+  <div class="glass-card"><h3>المسار الرسمي المعتمد</h3>
+  <p style="margin-top:10px;line-height:2">
+  ${u.role==="admin"?
+    `١) أضف المستخدمين والمدراء حسب الصلاحيات.<br>٢) الفكرة تصل بحالة <b>قيد الفحص</b> ولا تظهر في السوق.<br>٣) افحص الاكتمال من <b>فحص الملفات</b> ثم اعتمدها من <b>اعتماد الأفكار</b> لتصبح <b>متاح</b>.<br>٤) بعد الدفع تبقى في الضمان ${simBadge()} حتى تأكيد الاستلام.`
+    :u.role==="seller"?
+    `١) وقّع مستندات التسجيل فقط من <b>مستنداتي</b> (إقرارات الملكية والصحة وعدم البيع المزدوج).<br>٢) ارفع الفكرة — تبقى <b>قيد الفحص</b> حتى اعتماد الإدارة.<br>٣) بعد الاعتماد تظهر في السوق.<br>٤) اتفاقية نقل الملكية تُوقَّع عند إتمام البيع لا عند التسجيل.`
+    :u.role==="buyer"?
+    `١) تصفّح الأفكار <b>المتاحة</b> فقط.<br>٢) NDA يُوقَّع عند فتح التفاصيل لا عند إنشاء الحساب.<br>٣) الدفع يذهب للضمان ${simBadge("ضامن")} وتظهر العمولة قبل التأكيد.<br>٤) بعد تأكيد الاستلام تُحرَّر القيمة وتصدر الشهادة.`
+    :`١) وقّع اتفاقية المستشار وNDA من <b>مستنداتي</b>.<br>٢) أجب الطلبات الجديدة بالأسفل.<br>٣) التحليل في <b>استشارتي المقدمة</b>.`}
+  </p></div>`+(u.role==="advisor"?advisorInboxHtml(u):"");
+}
+
+function visibleIdeas(u){
+  if(u.role==="admin") return db.ideas();
+  return db.ideas().filter(i=>
+    i.ownerId===u.id ||
+    ["available","free","sold","negotiating"].includes(i.status)
+  );
+}
+function ideaCard(i){
+  const owner=db.users().find(u=>u.id===i.ownerId);
+  return `<article class="idea-card" onclick="openIdea('${i.id}')">
+    <div style="display:flex;justify-content:space-between;gap:8px;align-items:center">${statusBadge(i.status)}<span class="hint">${i.price>0?i.price+" ر.س":"مجانية"}</span></div>
+    <h3 style="margin:12px 0 8px">${esc(i.title)}</h3>
+    <p class="hint">${esc(i.summary||"")}</p>
+    ${i.equity>0?`<p class="hint" style="color:var(--amber-soft)">حصة مطلوبة: ${i.equity}%</p>`:""}
+    <p class="hint" style="margin-top:10px">البائع: ${esc(owner?owner.name:"—")} · ملفات: ${(i.files||[]).length}</p>
+  </article>`;
+}
+function pageMarket(u){
+  const show = u.role==="admin" ? db.ideas() : db.ideas().filter(i=>["available","free"].includes(i.status));
+  if(!show.length) return `<div class="admin-banner">لا توجد أفكار في السوق بعد.</div>`;
+  return `<p class="hint" style="margin-bottom:12px">${u.role==="admin"?"كل الأفكار المضافة في المنصة.":"الأفكار المتاحة والمجانية فقط."}</p>
+    <div class="idea-grid">${show.map(ideaCard).join("")}</div>`;
+}
+
+function pageSubmit(){
+  return `<form id="ideaForm" class="glass-card form-grid">
+  <div><label>عنوان الفكرة</label><input class="field" name="title" required></div>
+  <div><label>نبذة عامة</label><textarea class="field" name="summary" rows="2" required></textarea></div>
+  <div><label>التفاصيل الكاملة</label><textarea class="field" name="description" rows="5" required></textarea></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div><label>السعر (ر.س)</label><input class="field" name="price" type="number" min="0" value="5000" required></div>
+    <div><label>التصنيف</label><select class="field" name="category"><option>تقنية</option><option>تجارة</option><option>تعليم</option><option>صحة</option><option>أخرى</option></select></div>
+  </div>
+  <div><label>الحصة المطلوبة % (اختياري — 0 إلى 5)</label><input class="field" name="equity" type="number" min="0" max="5" value="0"></div>
+  <div><label>الملفات</label><input class="field" name="files" type="file" multiple accept=".pdf,.png,.jpg,.jpeg,.doc,.docx,.txt,.zip"></div>
+  <button class="btn btn-primary" type="submit">إرسال للفحص</button>
+</form>`;
+}
+
+function pageMine(u){
+  const list = db.ideas().filter(i=>i.ownerId===u.id);
+  if(!list.length) return `<div class="admin-banner">لا أفكار كتبتها أنت بعد. <button class="btn btn-sm btn-primary" onclick="renderPage('submit')" style="margin-right:8px">ارفع فكرة الآن</button></div>`;
+  return `<p class="hint" style="margin-bottom:12px">الأفكار التي أضفتها بحسابك فقط.</p><div class="idea-grid">${list.map(ideaCard).join("")}</div>`;
+}
+
+function roleDocs(role){
+  const base=DOCS[role]||[];
+  let docs=db.get("docs_"+role, base);
+  ["p_nda","i_nda"].forEach(id=>{
+    if(!docs.find(d=>d.id===id)){
+      const src=base.find(d=>d.id===id);
+      if(src) docs.unshift(src);
+    }
+  });
+  return docs;
+}
+function pageDocs(u){
+  const allDocs=roleDocs(u.role);
+  const signed=db.get("signed_"+u.id,[]);
+  const hasDeal=db.ideas().some(i=>(i.ownerId===u.id||i.buyerId===u.id)&&(i.status==="negotiating"||i.status==="sold"||(i.nda||[]).includes(u.id)));
+  const docs=allDocs.filter(d=>d.phase!=="deal" || hasDeal || signed.includes(d.id));
+  if(u.role==="admin") return `<div class="admin-banner">كأدمن، استخدم <b>الأقسام الرسمية</b>.</div>`;
+  const titles={seller:"مستندات البائع (أنت)",buyer:"مستندات المشتري (أنت)",advisor:"مستندات المستشار (أنت)"};
+  return `<div class="glass-card" style="margin-bottom:18px">
+    <div class="doc-head-row">
+      <div>
+        <h3>${titles[u.role]}</h3>
+        <p class="hint">التسجيل ≠ الصفقة. وقّع مستندات مرحلة التسجيل فقط قبل الرفع. مستندات الشراء والـNDA والضمان تظهر في وقتها.</p>
+      </div>
+      <button class="doc-add-btn" onclick="addUserDoc('${u.role}')">➕ إضافة مستند</button>
+    </div>
+    <div class="admin-banner">التقدّم: <b>${signed.length}/${docs.length}</b></div>
+  </div>
+  ${docs.map(d=>`
+    <div class="doc-item">
+      <div style="display:flex;justify-content:space-between;align-items:start;gap:10px">
+        <h4>${d.t}</h4>
+        ${d.custom?`<button class="icon-btn del" onclick="deleteUserDoc('${u.role}','${d.id}')" title="حذف">✕</button>`:""}
+      </div>
+      <p>${d.d}</p>
+      <div class="doc-meta">
+        <span class="req ${d.r}">${d.r==="mandatory"?"إلزامي":"اختياري"}</span>
+        <span class="req official">${d.src}</span>
+        <span class="req official">${d.phase==="onboard"?"عند التسجيل":d.phase==="review"?"عند الفحص":d.phase==="deal"?"عند الصفقة":"اختياري"}</span>
+      </div>
+      ${d.sign?`<div class="doc-action">
+        <button class="doc-sign-btn ${signed.includes(d.id)?'signed':''}" onclick="signDoc('${d.id}','${esc(d.t)}')" ${signed.includes(d.id)?'disabled':''}>
+          ${signed.includes(d.id)?"✓ تم التوقيع":"توقيع المستند"}
+        </button>
+      </div>`:''}
+    </div>
+  `).join("")}`;
+}
+
+function addUserDoc(role){
+  document.getElementById("modalBox").innerHTML=`
+    <h3>إضافة مستند جديد</h3>
+    <div class="form-grid" style="margin-top:16px">
+      <div><label>عنوان المستند</label><input class="field" id="ndTitle" required></div>
+      <div><label>الوصف</label><textarea class="field" id="ndDesc" rows="3" required></textarea></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label>النوع</label><select class="field" id="ndReq"><option value="mandatory">إلزامي</option><option value="optional">اختياري</option></select></div>
+        <div><label>يتطلب توقيع؟</label><select class="field" id="ndSign"><option value="true">نعم</option><option value="false">لا</option></select></div>
+      </div>
+      <button class="btn btn-primary" onclick="saveUserDoc('${role}')">حفظ المستند</button>
+    </div>`;
+  document.getElementById("modal").classList.add("open");
+}
+function saveUserDoc(role){
+  const t=document.getElementById("ndTitle").value.trim();
+  const d=document.getElementById("ndDesc").value.trim();
+  const r=document.getElementById("ndReq").value;
+  const sign=document.getElementById("ndSign").value==="true";
+  if(!t||!d) return alert("املأ الحقول.");
+  const docs=db.get("docs_"+role, DOCS[role]||[]);
+  docs.push({id:"c_"+uid(),t,d,r,src:"مخصص",sign,custom:true});
+  db.set("docs_"+role,docs);
+  db.log(`إضافة مستند مخصص «${t}»`);
+  closeModal(); renderPage("docs");
+}
+function deleteUserDoc(role,id){
+  if(!confirm("حذف هذا المستند؟"))return;
+  const docs=db.get("docs_"+role, DOCS[role]||[]).filter(d=>d.id!==id);
+  db.set("docs_"+role,docs);
+  renderPage("docs");
+}
+
+function pageDocsAdmin(){
+  return `<div class="docs-header">
+    <div class="docs-tabs">
+      <button class="docs-tab active" onclick="switchDocTab('legal',this)">⚖️ قانوني</button>
+      <button class="docs-tab" onclick="switchDocTab('tech',this)">🧠 تقني</button>
+      <button class="docs-tab" onclick="switchDocTab('finance',this)">💰 مالي</button>
+    </div>
+    <button class="doc-add-btn" onclick="addOfficialDoc()">➕ إضافة مستند رسمي</button>
+  </div>
+  <div id="docTabContent"></div>`;
+}
+let currentDocTab="legal";
+function tabPerm(tab){return tab==="legal"?"docs.legal":tab==="tech"?"docs.tech":"docs.finance"}
+function switchDocTab(tab,btn){
+  if(!can(tabPerm(tab))) { document.getElementById("docTabContent").innerHTML=`<div class="admin-banner">لا صلاحية لهذا القسم.</div>`; return; }
+  currentDocTab=tab;
+  document.querySelectorAll(".docs-tab").forEach(b=>b.classList.remove("active"));
+  if(btn) btn.classList.add("active");
+  const docs=db.get("official_"+tab, DEFAULT_OFFICIAL[tab]);
+  const titles={legal:"القسم القانوني",tech:"القسم التقني",finance:"القسم المالي"};
+  document.getElementById("docTabContent").innerHTML=`<div class="glass-card">
+    <h3>${titles[tab]}</h3>
+    <p class="hint">المستندات والمتطلبات حسب النظام الرسمي.</p>
+    <div style="margin-top:18px">
+      ${docs.map((d,idx)=>`
+        <div class="doc-item">
+          <div style="display:flex;justify-content:space-between;align-items:start;gap:10px">
+            <h4>${d.t}</h4>
+            <div class="check-actions">
+              <button class="icon-btn add" onclick="addOfficialDocAt('${tab}')" title="إضافة">➕</button>
+              <button class="icon-btn edit" onclick="editOfficialDoc('${tab}',${idx})" title="تعديل">✏️</button>
+              <button class="icon-btn del" onclick="deleteOfficialDoc('${tab}',${idx})" title="حذف">✕</button>
+            </div>
+          </div>
+          <p>${d.d}</p>
+          <div class="doc-meta">
+            <span class="req ${d.r}">${d.r==="mandatory"?"إلزامي":"اختياري"}</span>
+            <span class="req official">${d.src}</span>
+          </div>
+        </div>
+      `).join("")}
+    </div>
+  </div>`;
+}
+function addOfficialDoc(){addOfficialDocAt(currentDocTab)}
+function addOfficialDocAt(tab){
+  if(!can(tabPerm(tab))) return alert("لا صلاحية لتعديل هذا القسم.");
+  document.getElementById("modalBox").innerHTML=`
+    <h3>إضافة مستند رسمي</h3>
+    <div class="form-grid" style="margin-top:16px">
+      <div><label>العنوان</label><input class="field" id="odTitle"></div>
+      <div><label>الوصف</label><textarea class="field" id="odDesc" rows="3"></textarea></div>
+      <div><label>النوع</label><select class="field" id="odReq"><option value="mandatory">إلزامي</option><option value="optional">اختياري</option></select></div>
+      <button class="btn btn-primary" onclick="saveOfficialDoc('${tab}',-1)">حفظ</button>
+    </div>`;
+  document.getElementById("modal").classList.add("open");
+}
+function editOfficialDoc(tab,idx){
+  const docs=db.get("official_"+tab, DEFAULT_OFFICIAL[tab]);
+  const d=docs[idx];
+  if(!d) return;
+  document.getElementById("modalBox").innerHTML=`
+    <h3>تعديل المستند</h3>
+    <div class="form-grid" style="margin-top:16px">
+      <div><label>العنوان</label><input class="field" id="odTitle" value="${esc(d.t)}"></div>
+      <div><label>الوصف</label><textarea class="field" id="odDesc" rows="3">${esc(d.d)}</textarea></div>
+      <div><label>النوع</label><select class="field" id="odReq"><option value="mandatory" ${d.r==="mandatory"?"selected":""}>إلزامي</option><option value="optional" ${d.r==="optional"?"selected":""}>اختياري</option></select></div>
+      <button class="btn btn-primary" onclick="saveOfficialDoc('${tab}',${idx})">حفظ</button>
+    </div>`;
+  document.getElementById("modal").classList.add("open");
+}
+function saveOfficialDoc(tab,idx){
+  const t=document.getElementById("odTitle").value.trim();
+  const d=document.getElementById("odDesc").value.trim();
+  const r=document.getElementById("odReq").value;
+  if(!t||!d) return alert("املأ الحقول.");
+  let docs=db.get("official_"+tab, DEFAULT_OFFICIAL[tab]);
+  if(idx===-1) docs.push({t,d,r,src:"نظام"});
+  else docs[idx]={...docs[idx],t,d,r};
+  db.set("official_"+tab,docs);
+  db.log(`تعديل الأقسام الرسمية — ${tab}`);
+  closeModal();
+  document.getElementById("page").innerHTML=pageDocsAdmin();
+  switchDocTab(tab,document.querySelector(".docs-tab"));
+}
+function deleteOfficialDoc(tab,idx){
+  if(!confirm("حذف هذا المستند؟"))return;
+  let docs=db.get("official_"+tab, DEFAULT_OFFICIAL[tab]);
+  docs.splice(idx,1);
+  db.set("official_"+tab,docs);
+  document.getElementById("page").innerHTML=pageDocsAdmin();
+  switchDocTab(tab,document.querySelector(".docs-tab"));
+}
+
+/* ============ الاستشارات ============ */
+function getConsultations(){return db.get("consultations",DEFAULT_CONSULT)}
+function getConsultTickets(){return db.get("consultTickets",[])}
+function saveConsultTicket(){
+  const u=currentUser(); if(!u) return;
+  const kind=document.getElementById("ctKind").value;
+  const item=document.getElementById("ctItem").value;
+  const note=document.getElementById("ctNote").value.trim();
+  if(!note) return alert("اكتب موضوع الطلب.");
+  const list=getConsultTickets();
+  list.unshift({id:"ct_"+uid(),userId:u.id,kind,item,status:"open",note,at:now()});
+  db.set("consultTickets",list);
+  db.log(`طلب استشارة من ${u.name}: ${kind}`);
+  renderPage("consult");
+}
+function setTicketStatus(id,status){
+  db.set("consultTickets", getConsultTickets().map(t=>t.id===id?{...t,status}:t));
+  renderPage("consult");
+}
+function pageConsult(){
+  const items=getConsultations();
+  const u=currentUser();
+  const tickets=getConsultTickets().filter(t=>u.role==="admin"||u.role==="advisor"||t.userId===u.id);
+  return `<div class="glass-card" style="margin-bottom:18px">
+    <h3>طلب استشارة</h3>
+    <p class="hint">الطلب يُحفظ في المنصة ويظهر للمستشار والإدارة. يمكنك إضافة طلب جديد في أي وقت.</p>
+    <div class="form-grid" style="margin-top:12px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label>النوع</label><select class="field" id="ctKind"><option>قانونية</option><option>تقنية</option><option>مالية</option><option>تجارية</option></select></div>
+        <div><label>البند</label><select class="field" id="ctItem">${items.map(c=>`<option>${esc(c.text)}</option>`).join("")}</select></div>
+      </div>
+      <div><label>موضوع الطلب</label><textarea class="field" id="ctNote" rows="2" placeholder="اكتب سؤالك باختصار"></textarea></div>
+      <button class="btn btn-primary" type="button" onclick="saveConsultTicket()">إرسال الطلب</button>
+    </div>
+  </div>
+  <div class="glass-card" style="margin-bottom:18px">
+    <h3>طلبات الاستشارة</h3>
+    ${tickets.length?tickets.map(t=>{
+      const owner=db.users().find(x=>x.id===t.userId);
+      return `<div class="doc-item">
+        <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap">
+          <b>${esc(t.kind)} · ${esc(t.item)}</b>
+          <span class="badge">${t.status==="open"?"مفتوح":"مكتمل"}</span>
+        </div>
+        <p>${esc(t.note)}</p>
+        <p class="hint">${u.role==="advisor"||u.role==="admin"?("رقم المستخدم: "+publicIdOf(owner)):esc(owner?owner.name:"—")} · ${fmt(t.at)}</p>
+        ${t.reply?`<p style="margin-top:8px">الرد: ${esc(t.reply)}</p>`:""}
+        ${(u.role==="admin"||u.role==="advisor") && t.status==="open"?`<button class="btn btn-sm btn-primary" onclick="setTicketStatus('${t.id}','done')">تعليم كمكتمل</button>`:""}
+      </div>`;
+    }).join(""):`<p class="hint">لا توجد طلبات بعد.</p>`}
+  </div>
+  <div class="glass-card">
+    <div class="doc-head-row">
+      <div>
+        <h3>بنود الاستشارات</h3>
+        <p class="hint">أول بند استشارة مجانية (٣ شهرياً) — الباقي بأجر.</p>
+      </div>
+      <button class="doc-add-btn" onclick="addConsultItem()">➕ إضافة بند</button>
+    </div>
+    <div class="check-list" style="margin-top:16px">
+      ${items.map(c=>`
+        <div class="check-item" data-id="${c.id}">
+          <span style="font-size:1.2rem">${c.free?"🎁":"💼"}</span>
+          <label style="flex:1">${esc(c.text)}</label>
+          <span class="req ${c.free?'official':'mandatory'}">${c.free?"مجانية "+(c.count||0):(c.cost||0)+" ر.س"}</span>
+          <div class="check-actions">
+            <button class="icon-btn edit" onclick="editConsultItem('${c.id}')" title="تعديل">✏️</button>
+            <button class="icon-btn del" onclick="deleteConsultItem('${c.id}')" title="حذف">✕</button>
+          </div>
+        </div>
+      `).join("")}
+    </div>
+  </div>
+  <div class="glass-card" style="margin-top:20px">
+    <h3>ملخص سريع</h3>
+    <div class="chart-bars">
+      ${items.map(c=>{
+        const val=c.free?0:(c.cost||0);
+        const max=Math.max(...items.map(x=>x.cost||0),1);
+        const pct=val?Math.round((val/max)*100):0;
+        return `<div class="chart-row"><span class="chart-label">${esc(c.text.substring(0,30))}</span><div class="chart-bar-wrap"><div class="chart-bar ${c.free?'teal':''}" style="width:${c.free?100:pct}%">${c.free?c.count+" مجاناً":val+" ر.س"}</div></div></div>`;
+      }).join("")}
+    </div>
+  </div>`;
+}
+function addConsultItem(){
+  if(!can("consult.edit")) return alert("لا صلاحية لتعديل الاستشارات.");
+  document.getElementById("modalBox").innerHTML=`
+    <h3>إضافة بند استشارة</h3>
+    <div class="form-grid" style="margin-top:16px">
+      <div><label>نص البند</label><input class="field" id="ciT" placeholder="مثال: استشارة قانونية إضافية"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label>النوع</label><select class="field" id="ciFree"><option value="false">مدفوع</option><option value="true">مجاني</option></select></div>
+        <div><label>السعر / العدد</label><input class="field" id="ciCost" type="number" min="0" value="200"></div>
+      </div>
+      <button class="btn btn-primary" onclick="saveConsultItem(-1)">إضافة</button>
+    </div>`;
+  document.getElementById("modal").classList.add("open");
+}
+function editConsultItem(id){
+  const items=getConsultations();
+  const c=items.find(x=>x.id===id);
+  if(!c) return;
+  document.getElementById("modalBox").innerHTML=`
+    <h3>تعديل البند</h3>
+    <div class="form-grid" style="margin-top:16px">
+      <div><label>نص البند</label><input class="field" id="ciT" value="${esc(c.text)}"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label>النوع</label><select class="field" id="ciFree"><option value="false" ${!c.free?"selected":""}>مدفوع</option><option value="true" ${c.free?"selected":""}>مجاني</option></select></div>
+        <div><label>${c.free?"العدد":"السعر"}</label><input class="field" id="ciCost" type="number" min="0" value="${c.free?(c.count||3):(c.cost||0)}"></div>
+      </div>
+      <button class="btn btn-primary" onclick="saveConsultItemById('${id}')">حفظ</button>
+    </div>`;
+  document.getElementById("modal").classList.add("open");
+}
+function saveConsultItem(){
+  const text=document.getElementById("ciT").value.trim();
+  const free=document.getElementById("ciFree").value==="true";
+  const cost=Number(document.getElementById("ciCost").value)||0;
+  if(!text) return alert("اكتب نص البند.");
+  const items=getConsultations();
+  items.push(free?{id:"cons_"+uid(),text,count:cost,free:true}:{id:"cons_"+uid(),text,cost,free:false});
+  db.set("consultations",items);
+  db.log(`إضافة بند استشارة: ${text}`);
+  closeModal(); renderPage("consult");
+}
+function saveConsultItemById(id){
+  const text=document.getElementById("ciT").value.trim();
+  const free=document.getElementById("ciFree").value==="true";
+  const cost=Number(document.getElementById("ciCost").value)||0;
+  const items=getConsultations().map(c=>c.id===id?{...c,text,...(free?{free:true,count:cost}:{free:false,cost})}:c);
+  db.set("consultations",items);
+  closeModal(); renderPage("consult");
+}
+function deleteConsultItem(id){
+  if(!confirm("حذف هذا البند؟"))return;
+  db.set("consultations",getConsultations().filter(c=>c.id!==id));
+  renderPage("consult");
+}
+
+function getChecklist(){
+  const defaults=[
+    {id:"c1",text:"وصف المشكلة بوضوح",mandatory:true},
+    {id:"c2",text:"الحل المقترح مفصل",mandatory:true},
+    {id:"c3",text:"دراسة السوق",mandatory:true},
+    {id:"c4",text:"النموذج المالي",mandatory:true},
+    {id:"c5",text:"خطة التنفيذ",mandatory:true},
+    {id:"c6",text:"الفريق أو المهارات المطلوبة",mandatory:false},
+    {id:"c7",text:"الملفات التقنية",mandatory:false},
+    {id:"c8",text:"بحث الحماية الفكرية",mandatory:true},
+    {id:"c9",text:"دراسة المخاطر",mandatory:false},
+    {id:"c10",text:"مؤشرات الأداء (KPIs)",mandatory:false}
+  ];
+  return db.get("checklist",defaults);
+}
+function pageChecklist(){
+  const criteria=getChecklist();
+  return `<div class="glass-card">
+    <div class="doc-head-row">
+      <div>
+        <h3>معايير فحص اكتمال الملف</h3>
+        <p class="hint">تُطبَّق على كل فكرة قبل اعتمادها.</p>
+      </div>
+      <button class="doc-add-btn" onclick="addCheckItem()">➕ إضافة بند</button>
+    </div>
+    <div class="check-list">
+      ${criteria.map(c=>`
+        <div class="check-item ${c.mandatory?'missing':''}" data-id="${c.id}">
+          <input type="checkbox" id="${c.id}" onchange="toggleCheck('${c.id}')">
+          <label for="${c.id}">${c.text}</label>
+          <span class="req ${c.mandatory?'mandatory':'optional'}">${c.mandatory?'إلزامي':'اختياري'}</span>
+          <div class="check-actions">
+            <button class="icon-btn edit" onclick="editCheckItem('${c.id}')" title="تعديل">✏️</button>
+            <button class="icon-btn del" onclick="deleteCheckItem('${c.id}')" title="حذف">✕</button>
+          </div>
+        </div>
+      `).join("")}
+    </div>
+    <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="saveChecklist()">حفظ النتائج</button>
+      <button class="btn btn-ghost" onclick="resetChecklist()">إعادة تعيين</button>
+    </div>
+    <div id="checkResult" style="margin-top:16px"></div>
+  </div>
+  <div class="glass-card" style="margin-top:20px">
+    <h3>الملحقات الناقصة المقترحة</h3>
+    <ul style="margin-top:12px;padding-right:22px;color:var(--ink2);line-height:2.2">
+      <li>ملف <b>Executive Summary</b></li>
+      <li>عرض تقديمي <b>Pitch Deck</b></li>
+      <li>جدول <b>التوقعات المالية</b></li>
+      <li>خريطة <b>رحلة العميل</b></li>
+      <li>تحليل <b>SWOT</b></li>
+      <li>قائمة <b>المنافسين</b></li>
+      <li>خطة <b>التسويق الأولية</b></li>
+      <li>وثيقة <b>الملكية الفكرية</b></li>
+    </ul>
+  </div>`;
+}
+function toggleCheck(id){
+  const item=document.querySelector(`.check-item[data-id="${id}"]`);
+  const cb=document.getElementById(id);
+  item.classList.toggle("done",cb.checked);
+  item.classList.toggle("missing",!cb.checked && item.querySelector(".req.mandatory"));
+}
+function saveChecklist(){
+  const checks=document.querySelectorAll('.check-item input[type="checkbox"]');
+  const total=checks.length,done=[...checks].filter(c=>c.checked).length;
+  const pct=Math.round((done/total)*100);
+  const color=pct>=80?"var(--teal)":pct>=50?"var(--amber-soft)":"var(--rose-soft)";
+  document.getElementById("checkResult").innerHTML=`<div class="admin-banner" style="border-color:${color}">
+    اكتمال الملف: <b>${done}/${total}</b> (${pct}%)</div>`;
+  db.log(`فحص ملف: اكتمال ${pct}%`);
+}
+function resetChecklist(){document.querySelectorAll('.check-item input[type="checkbox"]').forEach(c=>{c.checked=false;toggleCheck(c.id)});document.getElementById("checkResult").innerHTML=""}
+function addCheckItem(){
+  if(!can("checklist.edit")) return alert("لا صلاحية لتعديل معايير الفحص.");
+  document.getElementById("modalBox").innerHTML=`
+    <h3>إضافة بند جديد</h3>
+    <div class="form-grid" style="margin-top:16px">
+      <div><label>نص البند</label><input class="field" id="ciText"></div>
+      <div><label>النوع</label><select class="field" id="ciReq"><option value="mandatory">إلزامي</option><option value="optional">اختياري</option></select></div>
+      <button class="btn btn-primary" onclick="saveCheckItem()">إضافة</button>
+    </div>`;
+  document.getElementById("modal").classList.add("open");
+}
+function editCheckItem(id){
+  const criteria=getChecklist();
+  const c=criteria.find(x=>x.id===id);
+  if(!c) return;
+  document.getElementById("modalBox").innerHTML=`
+    <h3>تعديل البند</h3>
+    <div class="form-grid" style="margin-top:16px">
+      <div><label>نص البند</label><input class="field" id="ciText" value="${esc(c.text)}"></div>
+      <div><label>النوع</label><select class="field" id="ciReq"><option value="mandatory" ${c.mandatory?"selected":""}>إلزامي</option><option value="optional" ${!c.mandatory?"selected":""}>اختياري</option></select></div>
+      <button class="btn btn-primary" onclick="saveCheckItemById('${id}')">حفظ</button>
+    </div>`;
+  document.getElementById("modal").classList.add("open");
+}
+function saveCheckItem(){
+  const text=document.getElementById("ciText").value.trim();
+  const mandatory=document.getElementById("ciReq").value==="mandatory";
+  if(!text) return alert("اكتب نص البند.");
+  const criteria=getChecklist();
+  criteria.push({id:"c_"+uid(),text,mandatory});
+  db.set("checklist",criteria);
+  closeModal(); renderPage("checklist");
+}
+function saveCheckItemById(id){
+  const text=document.getElementById("ciText").value.trim();
+  const mandatory=document.getElementById("ciReq").value==="mandatory";
+  const criteria=getChecklist().map(c=>c.id===id?{...c,text,mandatory}:c);
+  db.set("checklist",criteria);
+  closeModal(); renderPage("checklist");
+}
+function deleteCheckItem(id){
+  if(!confirm("حذف هذا البند؟"))return;
+  const criteria=getChecklist().filter(c=>c.id!==id);
+  db.set("checklist",criteria);
+  renderPage("checklist");
+}
+
+/* ============ التحليل (للأدمن) ============ */
+function calcAnalytics(){
+  const ideas=db.ideas();
+  const users=db.users();
+  const fees=feeSettings();
+  const total=ideas.length;
+  const sold=ideas.filter(i=>i.status==="sold");
+  const inProgress=ideas.filter(i=>["review","available","negotiating","free"].includes(i.status));
+  const cancelled=ideas.filter(i=>i.status==="cancelled");
+  const totalSales=sold.reduce((s,i)=>s+(i.price||0),0);
+  const commissionRate=fees.commissionRate;
+  const adminFees=sold.length*(fees.adminFee||0);
+  const salesFees=Math.round(totalSales*commissionRate);
+  const platformProfit=adminFees+salesFees;
+  const totalPayments=totalSales;
+
+  const roles={
+    seller:users.filter(u=>u.role==="seller").length,
+    buyer:users.filter(u=>u.role==="buyer").length,
+    advisor:users.filter(u=>u.role==="advisor").length,
+    admin:users.filter(u=>u.role==="admin").length
+  };
+
+  return {total,sold:sold.length,inProgress:inProgress.length,cancelled:cancelled.length,
+    totalSales,adminFees,salesFees,platformProfit,totalPayments,roles};
+}
+function barRow(label,val,max,cls){
+  const pct=max?Math.round((val/max)*100):0;
+  return `<div class="chart-row"><span class="chart-label">${label}</span><div class="chart-bar-wrap"><div class="chart-bar ${cls}" style="width:${Math.max(pct,8)}%">${val}</div></div></div>`;
+}
+function pageAnalytics(){
+  const a=calcAnalytics();
+  const fees=feeSettings();
+  const users=db.users().filter(u=>u.role!=="admin");
+  const maxIdea=Math.max(a.total,a.sold,a.inProgress,a.cancelled,1);
+  const maxFin=Math.max(a.totalSales,a.adminFees,a.salesFees,a.platformProfit,a.totalPayments,1);
+  const maxUsers=Math.max(a.roles.seller,a.roles.buyer,a.roles.advisor,a.roles.admin,1);
+
+  return `<div class="glass-card" style="margin-bottom:20px">
+    <div class="doc-head-row">
+      <div>
+        <h3>رسوم المنصة</h3>
+        <p class="hint">قابلة للتعديل من هنا وتنعكس على الضمان والتحليل.</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;margin-top:12px">
+      <div><label>عمولة البيع %</label><input class="field" id="feeRate" type="number" min="0" max="30" step="0.1" value="${(fees.commissionRate*100)}"></div>
+      <div><label>رسوم إدارية ر.س</label><input class="field" id="feeAdmin" type="number" min="0" value="${fees.adminFee}"></div>
+      <div style="align-self:end"><button class="btn btn-primary" type="button" onclick="saveFees()">حفظ الرسوم</button></div>
+    </div>
+  </div>
+  <div class="glass-card" style="margin-bottom:20px">
+    <h3>تصدير التحليل</h3>
+    <p class="hint">المنصة كاملة أو مستخدم محدد — CSV أو Excel.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:end">
+      <select class="field" id="anUser" style="min-width:180px">
+        <option value="all">كل المنصة</option>
+        ${users.map(u=>`<option value="${u.id}">${esc(u.name)} · ${ROLES[u.role]}</option>`).join("")}
+      </select>
+      <button class="btn btn-ghost" type="button" onclick="exportAnalytics('csv')">تصدير CSV</button>
+      <button class="btn btn-primary" type="button" onclick="exportAnalytics('xls')">تصدير Excel</button>
+    </div>
+  </div>
+  <div class="glass-card" style="margin-bottom:20px">
+    <h3>📊 تحليل الأفكار</h3>
+    <div class="stats" style="margin-top:14px">
+      <div class="stat info"><span class="hint">إجمالي الأفكار</span><b>${a.total}</b></div>
+      <div class="stat good"><span class="hint">تم البيع/الشراء</span><b>${a.sold}</b></div>
+      <div class="stat warn"><span class="hint">تحت الإجراء</span><b>${a.inProgress}</b></div>
+      <div class="stat bad"><span class="hint">تم الإلغاء</span><b>${a.cancelled}</b></div>
+    </div>
+    <div class="chart-bars">
+      ${barRow("إجمالي الأفكار",a.total,maxIdea,"lav")}
+      ${barRow("تم البيع/الشراء",a.sold,maxIdea,"teal")}
+      ${barRow("تحت الإجراء",a.inProgress,maxIdea,"amber")}
+      ${barRow("تم الإلغاء",a.cancelled,maxIdea,"rose")}
+    </div>
+  </div>
+
+  <div class="glass-card" style="margin-bottom:20px">
+    <h3>💰 التحليل المالي</h3>
+    <div class="stats" style="margin-top:14px">
+      <div class="stat"><span class="hint">رسوم إدارية</span><b>${a.adminFees} ر.س</b></div>
+      <div class="stat"><span class="hint">رسوم بعد البيع/الشراء</span><b>${a.salesFees} ر.س</b></div>
+      <div class="stat good"><span class="hint">أرباح المنصة</span><b>${a.platformProfit} ر.س</b></div>
+      <div class="stat info"><span class="hint">إجمالي المدفوعات</span><b>${a.totalPayments} ر.س</b></div>
+    </div>
+    <div class="chart-bars">
+      ${barRow("إجمالي المدفوعات",a.totalPayments,maxFin,"lav")}
+      ${barRow("رسوم إدارية",a.adminFees,maxFin,"amber")}
+      ${barRow("رسوم بيع/شراء",a.salesFees,maxFin,"rose")}
+      ${barRow("أرباح المنصة",a.platformProfit,maxFin,"teal")}
+    </div>
+  </div>
+
+  <div class="glass-card">
+    <h3>👥 تحليل المستخدمين</h3>
+    <div class="stats" style="margin-top:14px">
+      <div class="stat"><span class="hint">صاحب فكرة</span><b>${a.roles.seller}</b></div>
+      <div class="stat"><span class="hint">مشتري</span><b>${a.roles.buyer}</b></div>
+      <div class="stat"><span class="hint">مستشار</span><b>${a.roles.advisor}</b></div>
+      <div class="stat"><span class="hint">مدراء</span><b>${a.roles.admin}</b></div>
+    </div>
+    <div class="chart-bars">
+      ${barRow("صاحب فكرة",a.roles.seller,maxUsers,"teal")}
+      ${barRow("مشتري",a.roles.buyer,maxUsers,"lav")}
+      ${barRow("مستشار",a.roles.advisor,maxUsers,"amber")}
+      ${barRow("مدراء",a.roles.admin,maxUsers,"rose")}
+    </div>
+  </div>`;
+}
+
+/* ============ التحليل المالي الشخصي ============ */
+function calcUserFinance(u){
+  const ideas=db.ideas();
+  const commissionRate=feeSettings().commissionRate;
+  if(u.role==="seller"){
+    const mine=ideas.filter(i=>i.ownerId===u.id);
+    const sold=mine.filter(i=>i.status==="sold");
+    const totalSales=sold.reduce((s,i)=>s+(i.price||0),0);
+    const commission=Math.round(totalSales*commissionRate);
+    const netEarnings=totalSales-commission;
+    return {count:mine.length,soldCount:sold.length,totalSales,commission,netEarnings,
+      available:mine.filter(i=>i.status==="available").length,
+      review:mine.filter(i=>i.status==="review").length,
+      cancelled:mine.filter(i=>i.status==="cancelled").length};
+  }
+  if(u.role==="buyer"){
+    const purchased=ideas.filter(i=>i.buyerId===u.id&&i.status==="sold");
+    const totalPayments=purchased.reduce((s,i)=>s+(i.price||0),0);
+    const inEscrow=ideas.filter(i=>i.buyerId===u.id&&i.escrow&&!i.released).reduce((s,i)=>s+(i.price||0),0);
+    return {purchasedCount:purchased.length,totalPayments,inEscrow,netSpent:totalPayments};
+  }
+  return null;
+}
+function pageMyFinance(u){
+  if(u.role==="admin"){
+    return `<div class="admin-banner">كأدمن، استخدم قسم <b>التحليل</b> للأرقام الكاملة.</div>`;
+  }
+  const f=calcUserFinance(u);
+  if(!f) return `<div class="admin-banner">لا توجد بيانات مالية لهذا الدور.</div>`;
+
+  if(u.role==="seller"){
+    return `<div class="glass-card" style="margin-bottom:20px">
+      <h3>💰 أرباحي كصاحب فكرة</h3>
+      <div class="stats" style="margin-top:14px">
+        <div class="stat info"><span class="hint">إجمالي أفكاري</span><b>${f.count}</b></div>
+        <div class="stat good"><span class="hint">مُباعة</span><b>${f.soldCount}</b></div>
+        <div class="stat warn"><span class="hint">معروضة</span><b>${f.available}</b></div>
+        <div class="stat"><span class="hint">قيد الفحص</span><b>${f.review}</b></div>
+      </div>
+    </div>
+    <div class="glass-card">
+      <h3>التفاصيل المالية</h3>
+      <div class="stats" style="margin-top:14px">
+        <div class="stat"><span class="hint">إجمالي المبيعات</span><b>${f.totalSales} ر.س</b></div>
+        <div class="stat bad"><span class="hint">عمولة المنصة (${Math.round(feeSettings().commissionRate*100)}٪)</span><b>${f.commission} ر.س</b></div>
+        <div class="stat good"><span class="hint">صافي أرباحي</span><b>${f.netEarnings} ر.س</b></div>
+      </div>
+      <div class="chart-bars" style="margin-top:16px">
+        ${barRow("إجمالي المبيعات",f.totalSales,Math.max(f.totalSales,1),"lav")}
+        ${barRow("عمولة المنصة",f.commission,Math.max(f.totalSales,1),"rose")}
+        ${barRow("صافي أرباحي",f.netEarnings,Math.max(f.totalSales,1),"teal")}
+      </div>
+    </div>`;
+  }
+  if(u.role==="buyer"){
+    return `<div class="glass-card" style="margin-bottom:20px">
+      <h3>💳 مدفوعاتي كمشتري</h3>
+      <div class="stats" style="margin-top:14px">
+        <div class="stat info"><span class="hint">عدد المشتريات</span><b>${f.purchasedCount}</b></div>
+        <div class="stat good"><span class="hint">إجمالي المدفوع</span><b>${f.totalPayments} ر.س</b></div>
+        <div class="stat warn"><span class="hint">محتجز في الضمان</span><b>${f.inEscrow} ر.س</b></div>
+      </div>
+      <div class="chart-bars" style="margin-top:16px">
+        ${barRow("إجمالي المدفوع",f.totalPayments,Math.max(f.totalPayments,1),"lav")}
+        ${barRow("محتجز في الضمان",f.inEscrow,Math.max(f.totalPayments,1),"amber")}
+      </div>
+    </div>`;
+  }
+  return `<div class="admin-banner">لا توجد بيانات مالية.</div>`;
+}
+
+function pageUsers(){
+  const users=db.users();
+  const addForm=can("users.add")?`<form id="addUserForm" class="glass-card form-grid" style="margin-bottom:20px"><h3>إضافة مستخدم</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <input class="field" name="name" placeholder="الاسم" required>
+      <input class="field" name="username" placeholder="اسم المستخدم" required>
+      <input class="field" name="password" placeholder="كلمة المرور" required>
+      <select class="field" name="role"><option value="seller">صاحب فكرة</option><option value="buyer">مشتري</option><option value="advisor">مستشار</option><option value="admin">أدمن</option></select>
+    </div><button class="btn btn-primary" type="submit">إضافة وتفعيل</button></form>`:`<div class="admin-banner" style="margin-bottom:16px">عرض فقط — لا صلاحية لإضافة مستخدمين.</div>`;
+  return `${addForm}
+    <table class="table"><thead><tr><th>المستخدم</th><th>الدور</th><th>الحالة</th><th>إجراء</th></tr></thead><tbody>
+    ${users.map(u=>`<tr><td>${esc(u.name)}<div class="hint">@${esc(u.username)}</div></td><td>${ROLES[u.role]}${u.perms&&u.perms.length?` <span class="perm-badge">${u.perms.includes("*")?"كل الصلاحيات":u.perms.length+" صلاحية"}</span>`:""}</td><td>${u.status==="active"?"مفعّل":"موقوف"}</td><td style="white-space:nowrap">${u.username==="admin"?`<button class="btn btn-sm btn-ghost" onclick="editUser('${u.id}')">تعديل</button>`:`<button class="btn btn-sm btn-ghost" onclick="editUser('${u.id}')">تعديل</button> <button class="btn btn-sm btn-ghost" onclick="toggleUser('${u.id}')">${u.status==="active"?"إيقاف":"تفعيل"}</button>`}</td></tr>`).join("")}
+    </tbody></table>`;
+}
+
+const ALL_PERMS = [
+  {id:"ideas.view",label:"عرض كل الأفكار"},
+  {id:"ideas.approve",label:"اعتماد الأفكار"},
+  {id:"ideas.delete",label:"حذف الأفكار"},
+  {id:"users.view",label:"عرض المستخدمين"},
+  {id:"users.add",label:"إضافة مستخدمين"},
+  {id:"users.suspend",label:"إيقاف/تفعيل"},
+  {id:"docs.legal",label:"إدارة القسم القانوني"},
+  {id:"docs.tech",label:"إدارة القسم التقني"},
+  {id:"docs.finance",label:"إدارة القسم المالي"},
+  {id:"checklist.edit",label:"تعديل معايير الفحص"},
+  {id:"consult.edit",label:"تعديل بنود الاستشارات"},
+  {id:"analytics.view",label:"عرض التحليل"},
+  {id:"logs.view",label:"عرض السجل"},
+  {id:"admins.manage",label:"إدارة المدراء"}
+];
+function pageAdmins(){
+  const admins=db.users().filter(u=>u.role==="admin");
+  return `<div class="glass-card" style="margin-bottom:20px">
+    <h3>إضافة مدير جديد</h3>
+    <p class="hint">حدّد صلاحياته لكل قسم.</p>
+    <div class="form-grid" style="margin-top:14px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <input class="field" id="aName" placeholder="الاسم">
+        <input class="field" id="aUser" placeholder="اسم المستخدم">
+        <input class="field" id="aPass" placeholder="كلمة المرور">
+        <input class="field" id="aEmail" placeholder="البريد">
+      </div>
+      <div>
+        <label style="margin-bottom:10px">الصلاحيات:</label>
+        <div id="aPerms">
+          ${ALL_PERMS.map(p=>`
+            <div class="perm-row">
+              <input type="checkbox" id="p_${p.id}" value="${p.id}">
+              <label for="p_${p.id}">${p.label}</label>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="addAdmin()">إضافة المدير</button>
+    </div>
+  </div>
+  <h3 style="margin-bottom:14px">المدراء الحاليون</h3>
+  ${admins.map(a=>`
+    <div class="doc-item">
+      <div style="display:flex;justify-content:space-between;align-items:start;gap:10px">
+        <div>
+          <h4>${esc(a.name)} <span class="hint">@${esc(a.username)}</span></h4>
+          <p class="hint">${a.perms&&a.perms.includes("*")?"كل الصلاحيات":(a.perms||[]).length+" صلاحية"}</p>
+        </div>
+        <div class="check-actions">
+          ${a.username!=="admin"?`<button class="icon-btn edit" onclick="editAdminPerms('${a.id}')" title="تعديل">✏️</button>
+          <button class="icon-btn del" onclick="removeAdmin('${a.id}')" title="إزالة">✕</button>`:`<span class="perm-badge">المدير الرئيسي</span>`}
+        </div>
+      </div>
+      <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px">
+        ${(a.perms||[]).map(p=>`<span class="perm-badge">${p==="*"?"كل الصلاحيات":(ALL_PERMS.find(x=>x.id===p)?.label||p)}</span>`).join("")}
+      </div>
+    </div>
+  `).join("")}`;
+}
+async function addAdmin(){
+  if(!can("admins.manage")) return alert("لا صلاحية لإدارة المدراء.");
+  const name=document.getElementById("aName").value.trim();
+  const username=document.getElementById("aUser").value.trim();
+  const password=document.getElementById("aPass").value.trim();
+  const email=document.getElementById("aEmail").value.trim();
+  if(!name||!username||!password) return alert("املأ الحقول الأساسية.");
+  if(db.users().some(u=>u.username===username)) return alert("اسم المستخدم موجود.");
+  const perms=[...document.querySelectorAll("#aPerms input:checked")].map(c=>c.value);
+  if(!perms.length) return alert("حدّد صلاحية واحدة على الأقل.");
+  const passwordHash=await sha256(password);
+  const users=db.users();
+  users.push({id:uid(),username,passwordHash,name,email:email||username+"@milkia.local",phone:"",role:"admin",status:"active",createdAt:now(),perms});
+  db.saveUsers(users);
+  db.log(`إضافة مدير جديد: ${name}`);
+  renderPage("admins");
+}
+function editAdminPerms(id){
+  const a=db.users().find(u=>u.id===id);
+  if(!a) return;
+  document.getElementById("modalBox").innerHTML=`
+    <h3>تعديل صلاحيات ${esc(a.name)}</h3>
+    <div id="ePerms" style="margin-top:14px">
+      ${ALL_PERMS.map(p=>`
+        <div class="perm-row">
+          <input type="checkbox" id="ep_${p.id}" value="${p.id}" ${(a.perms||[]).includes(p.id)?"checked":""}>
+          <label for="ep_${p.id}">${p.label}</label>
+        </div>
+      `).join("")}
+    </div>
+    <div style="margin-top:14px;display:flex;gap:8px">
+      <button class="btn btn-primary" onclick="saveAdminPerms('${id}')">حفظ</button>
+      <button class="btn btn-ghost" onclick="closeModal()">إلغاء</button>
+    </div>`;
+  document.getElementById("modal").classList.add("open");
+}
+function saveAdminPerms(id){
+  const perms=[...document.querySelectorAll("#ePerms input:checked")].map(c=>c.value);
+  db.saveUsers(db.users().map(u=>u.id===id?{...u,perms}:u));
+  closeModal(); renderPage("admins");
+}
+function removeAdmin(id){
+  if(!confirm("إزالة هذا المدير؟"))return;
+  db.saveUsers(db.users().filter(u=>u.id!==id));
+  renderPage("admins");
+}
+
+function pageReview(){
+  const ideas=db.ideas();
+  if(!ideas.length) return `<div class="admin-banner">لا أفكار بانتظار الاعتماد.</div>`;
+  return `<div class="admin-banner" style="margin-bottom:16px">عدد الأفكار: <b>${ideas.length}</b></div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+    <button class="btn btn-ghost btn-sm" type="button" onclick="toggleAllIdeas(true)">تحديد الكل</button>
+    <button class="btn btn-ghost btn-sm" type="button" onclick="toggleAllIdeas(false)">إلغاء التحديد</button>
+    <button class="btn btn-primary btn-sm" type="button" onclick="exportSelectedIdeas()">تصدير المحدد PDF</button>
+  </div>
+  <table class="table"><thead><tr><th></th><th>الفكرة</th><th>البائع</th><th>الحالة</th><th>الملفات</th><th></th></tr></thead><tbody>
+  ${ideas.map(i=>{const o=db.users().find(u=>u.id===i.ownerId);return `<tr><td><input type="checkbox" class="idea-pick" value="${i.id}"></td><td>${esc(i.title)}</td><td>${esc(o?o.name:"—")}</td><td>${statusBadge(i.status)}</td><td>${(i.files||[]).length}</td><td style="white-space:nowrap"><button class="btn btn-sm btn-primary" onclick="openIdea('${i.id}')">فتح</button> <button class="btn btn-sm btn-ghost" onclick="editIdea('${i.id}')">تعديل</button></td></tr>`}).join("")}
+  </tbody></table>`;
+}
+function saveFees(){
+  if(!can("analytics.view")) return;
+  const rate=Number(document.getElementById("feeRate").value);
+  const admin=Number(document.getElementById("feeAdmin").value);
+  if(Number.isNaN(rate)||Number.isNaN(admin)||rate<0||admin<0) return alert("أدخل أرقاماً صحيحة.");
+  db.set("fees",{commissionRate:rate/100,adminFee:admin});
+  db.log(`تحديث الرسوم: عمولة ${rate}% ورسوم ${admin}`);
+  renderPage("analytics");
+}
+function toggleAllIdeas(on){document.querySelectorAll(".idea-pick").forEach(c=>c.checked=!!on)}
+function selectedIdeaIds(){
+  const picked=[...document.querySelectorAll(".idea-pick:checked")].map(c=>c.value);
+  return picked.length?picked:db.ideas().map(i=>i.id);
+}
+function exportSelectedIdeas(){
+  const ids=selectedIdeaIds();
+  const ideas=db.ideas().filter(i=>ids.includes(i.id));
+  if(!ideas.length) return alert("لا أفكار للتصدير.");
+  const html=`<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>أفكار مِلْكية</title>
+  <style>body{font-family:Tahoma,Arial;padding:24px;color:#111}h1{font-size:20px}article{border:1px solid #ddd;padding:14px;margin:12px 0;border-radius:10px}.m{color:#555;font-size:13px}</style></head><body>
+  <h1>تصدير أفكار منصة مِلْكية</h1><p class="m">${ideas.length} فكرة · ${new Date().toLocaleString("ar-SA")}</p>
+  ${ideas.map(i=>{const o=db.users().find(u=>u.id===i.ownerId);const st=STATUS[i.status];return `<article><h2>${esc(i.title)}</h2><p class="m">${st?st.label:i.status} · ${i.category||"—"} · ${i.price||0} ر.س · ${o?esc(o.name):"—"}</p><p>${esc(i.summary||"")}</p><p>${esc(i.description||"")}</p></article>`}).join("")}
+  </body></html>`;
+  const w=window.open("", "_blank");
+  if(!w){alert("اسمح بالنوافذ المنبثقة لحفظ PDF.");return}
+  w.document.write(html); w.document.close();
+  setTimeout(()=>w.print(), 250);
+}
+function downloadFile(name, mime, content){
+  const blob=new Blob([content],{type:mime});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download=name;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1500);
+}
+function exportAnalytics(kind){
+  const uid=document.getElementById("anUser")?.value||"all";
+  const fees=feeSettings();
+  let headers, rows, title;
+  if(uid==="all"){
+    const a=calcAnalytics();
+    title="تحليل_المنصة";
+    headers=["المؤشر","القيمة"];
+    rows=[
+      ["إجمالي الأفكار",a.total],["مُباع",a.sold],["تحت الإجراء",a.inProgress],["ملغاة",a.cancelled],
+      ["إجمالي المبيعات",a.totalSales],["رسوم إدارية",a.adminFees],["عمولة البيع",a.salesFees],["أرباح المنصة",a.platformProfit],
+      ["أصحاب أفكار",a.roles.seller],["مشترون",a.roles.buyer],["مستشارون",a.roles.advisor],["مدراء",a.roles.admin],
+      ["نسبة العمولة %",Math.round(fees.commissionRate*100)],["الرسوم الإدارية للصفقة",fees.adminFee]
+    ];
+  }else{
+    const user=db.users().find(x=>x.id===uid); if(!user) return alert("المستخدم غير موجود.");
+    title="تحليل_"+user.username;
+    const ideas=db.ideas().filter(i=>i.ownerId===user.id||i.buyerId===user.id);
+    headers=["البند","القيمة"];
+    rows=[["الاسم",user.name],["المستخدم",user.username],["الدور",ROLES[user.role]],["الحالة",user.status],["عدد الأفكار المرتبطة",ideas.length]];
+    const f=calcUserFinance(user);
+    if(f && user.role==="seller"){
+      rows.push(["أفكاره",f.count],["مُباعة",f.soldCount],["إجمالي المبيعات",f.totalSales],["عمولة",f.commission],["صافي",f.netEarnings]);
+    }else if(f && user.role==="buyer"){
+      rows.push(["مشتريات",f.purchasedCount],["مدفوع",f.totalPayments],["محتجز",f.inEscrow]);
+    }
+    ideas.forEach(i=>rows.push([i.title, `${(STATUS[i.status]||{}).label||i.status} | ${i.price||0}`]));
+  }
+  if(kind==="csv"){
+    const csv="\ufeff"+[headers,...rows].map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(",")).join("\n");
+    downloadFile(title+".csv","text/csv;charset=utf-8",csv);
+  }else{
+    const table=`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="utf-8"></head><body dir="rtl"><table><tr>${headers.map(h=>`<th>${h}</th>`).join("")}</tr>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</table></body></html>`;
+    downloadFile(title+".xls","application/vnd.ms-excel",table);
+  }
+}
+function editUser(id){
+  const u=db.users().find(x=>x.id===id); if(!u) return;
+  document.getElementById("modalBox").innerHTML=`
+    <h3>تعديل المستخدم</h3>
+    <div class="form-grid" style="margin-top:14px">
+      <div><label>الاسم</label><input class="field" id="euName" value="${esc(u.name)}"></div>
+      <div><label>البريد</label><input class="field" id="euEmail" value="${esc(u.email||"")}"></div>
+      <div><label>الجوال</label><input class="field" id="euPhone" value="${esc(u.phone||"")}"></div>
+      <div><label>الدور</label><select class="field" id="euRole">
+        ${Object.keys(ROLES).map(r=>`<option value="${r}" ${u.role===r?"selected":""}>${ROLES[r]}</option>`).join("")}
+      </select></div>
+      <div><label>كلمة مرور جديدة (اختياري)</label><input class="field" id="euPass" type="password" placeholder="اتركه فارغاً للإبقاء"></div>
+      <button class="btn btn-primary" type="button" onclick="saveUserEdit('${u.id}')">حفظ</button>
+    </div>`;
+  document.getElementById("modal").classList.add("open");
+}
+async function saveUserEdit(id){
+  const name=document.getElementById("euName").value.trim();
+  const email=document.getElementById("euEmail").value.trim();
+  const phone=document.getElementById("euPhone").value.trim();
+  const role=document.getElementById("euRole").value;
+  const pass=document.getElementById("euPass").value;
+  if(!name) return alert("الاسم مطلوب.");
+  let passwordHash=null;
+  if(pass) passwordHash=await sha256(pass);
+  db.saveUsers(db.users().map(u=>{
+    if(u.id!==id) return u;
+    const next={...u,name,email,phone,role};
+    if(id==="admin_root") next.role="admin";
+    if(passwordHash){next.passwordHash=passwordHash; next.password=undefined;}
+    return next;
+  }));
+  db.log(`تعديل بيانات المستخدم ${name}`);
+  closeModal(); renderPage("users");
+}
+function editIdea(id){
+  const i=db.ideas().find(x=>x.id===id); if(!i) return;
+  document.getElementById("modalBox").innerHTML=`
+    <h3>تعديل الفكرة</h3>
+    <div class="form-grid" style="margin-top:14px">
+      <div><label>العنوان</label><input class="field" id="eiTitle" value="${esc(i.title)}"></div>
+      <div><label>النبذة</label><textarea class="field" id="eiSum" rows="2">${esc(i.summary||"")}</textarea></div>
+      <div><label>التفاصيل</label><textarea class="field" id="eiDesc" rows="4">${esc(i.description||"")}</textarea></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div><label>السعر</label><input class="field" id="eiPrice" type="number" value="${i.price||0}"></div>
+        <div><label>التصنيف</label><input class="field" id="eiCat" value="${esc(i.category||"")}"></div>
+      </div>
+      <div><label>الحالة</label><select class="field" id="eiSt">${Object.keys(STATUS).map(s=>`<option value="${s}" ${i.status===s?"selected":""}>${STATUS[s].label}</option>`).join("")}</select></div>
+      <button class="btn btn-primary" type="button" onclick="saveIdeaEdit('${i.id}')">حفظ</button>
+    </div>`;
+  document.getElementById("modal").classList.add("open");
+}
+function saveIdeaEdit(id){
+  updateIdea(id,{
+    title:document.getElementById("eiTitle").value.trim(),
+    summary:document.getElementById("eiSum").value.trim(),
+    description:document.getElementById("eiDesc").value.trim(),
+    price:Number(document.getElementById("eiPrice").value)||0,
+    category:document.getElementById("eiCat").value.trim(),
+    status:document.getElementById("eiSt").value
+  });
+  db.log("تعديل فكرة من لوحة التحكم");
+  closeModal();
+  renderPage("review");
+}
+function pageLogs(){
+  const logs=db.logs();
+  if(!logs.length) return `<div class="admin-banner">لا عمليات بعد.</div>`;
+  return `<div class="admin-banner" style="margin-bottom:16px">عدد العمليات: <b>${logs.length}</b></div>`+
+  logs.map(l=>`<div class="log-entry"><span class="log-text">${esc(l.text)}</span><span class="log-time">${fmt(l.at)}</span></div>`).join("");
+}
+
+function signDoc(id,title){
+  if(!confirm(`توقيع المستند: ${title}؟`))return;
+  const u=currentUser();
+  const signed=db.get("signed_"+u.id,[]);
+  if(!signed.includes(id)) signed.push(id);
+  db.set("signed_"+u.id,signed);
+  db.log(`${u.name} وقّع المستند: ${title}`);
+  renderPage("docs");
+}
+
+function bindPage(page){
+  if(page==="submit"){
+    document.getElementById("ideaForm").onsubmit=async e=>{
+      e.preventDefault();
+      const u=currentUser();
+      const signed=db.get("signed_"+u.id,[]);
+      const required=(DOCS[u.role]||[]).filter(d=>d.sign&&d.r==="mandatory"&&d.phase==="onboard").map(d=>d.id);
+      const missing=required.filter(id=>!signed.includes(id));
+      if(missing.length>0){
+        alert("وقّع مستندات التسجيل الإلزامية أولاً، ومنها اتفاقيتا سرية المنصة وسرية الأفكار.");
+        renderPage("docs");
+        return;
+      }
+      const fd=new FormData(e.target);
+      const files=await readFiles(e.target.files.files);
+      const title=fd.get("title").trim();
+      const summary=fd.get("summary").trim();
+      const fingerprints=files.map(f=>f.fingerprint);
+      const sumFp=hashName(summary.slice(0,300));
+      const dup=db.ideas().find(idea=>idea.files.some(f=>fingerprints.includes(f.fingerprint)) || idea.summaryFp===sumFp);
+      const idea={id:uid(),ownerId:u.id,title,summary,description:fd.get("description").trim(),price:Number(fd.get("price")||0),equity:Math.min(5,Math.max(0,Number(fd.get("equity")||0))),category:fd.get("category"),status:"review",files,buyerId:null,nda:[],escrow:false,released:false,certificate:null,createdAt:now(),summaryFp:sumFp,note:dup?"تنبيه لإعادة الرفع: بصمة ملف أو نبذة مشابهة لفكرة سابقة":""};
+      const ideas=db.ideas(); ideas.unshift(idea); db.saveIdeas(ideas);
+      db.log(`رفع فكرة «${title}» — قيد الفحص`);
+      alert("تم الإرسال للفحص. لن تظهر في السوق قبل اعتماد الإدارة.");
+      renderPage("mine");
+    };
+  }
+  if(page==="users"){
+    const form=document.getElementById("addUserForm");
+    if(form) form.onsubmit=async e=>{
+      e.preventDefault();
+      if(!can("users.add")) return alert("لا صلاحية لإضافة مستخدمين.");
+      const fd=new FormData(e.target); const username=fd.get("username").trim();
+      if(db.users().some(x=>x.username===username)) return alert("اسم المستخدم موجود.");
+      const role=fd.get("role");
+      if(role==="admin" && !can("admins.manage")) return alert("لا صلاحية لإنشاء مدير.");
+      const passwordHash=await sha256(fd.get("password"));
+      const users=db.users();
+      users.push({id:uid(),username,passwordHash,name:fd.get("name").trim(),email:username+"@milkia.local",phone:"",role,status:"active",createdAt:now(),perms:role==="admin"?[]:undefined});
+      db.saveUsers(users); db.log(`إضافة مستخدم ${username}`); renderPage("users");
+    };
+  }
+}
+async function readFiles(list){
+  const out=[];
+  for(const file of [...list].slice(0,5)){
+    if(file.size>500*1024){alert("الملف «"+file.name+"» أكبر من 500KB. في نسخة العرض يُحفظ الاسم والحجم وبصمة الملف فقط دون محتوى الملف حتى لا يمتلئ المتصفح.");
+      out.push({name:file.name,type:file.type||"application/octet-stream",size:file.size,dataUrl:"",fingerprint:hashName(file.name+":"+file.size)});
+      continue}
+    const dataUrl=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file)});
+    out.push({name:file.name,type:file.type||"application/octet-stream",size:file.size,dataUrl,fingerprint:hashName(file.name+":"+file.size+":"+String(dataUrl).slice(0,300))});
+  }
+  return out;
+}
+
+function openIdea(id){
+  const idea=db.ideas().find(i=>i.id===id); if(!idea) return;
+  const u=currentUser();
+  const owner=db.users().find(x=>x.id===idea.ownerId);
+  const buyer=db.users().find(x=>x.id===idea.buyerId);
+  const isOwner=u.id===idea.ownerId; const isAdmin=u.role==="admin";
+  const signed=idea.nda.includes(u.id);
+  const canSeeFull=isAdmin||isOwner||signed||(idea.status==="sold"&&idea.buyerId===u.id);
+  if(!isOwner && !isAdmin && idea.status==="review"){
+    document.getElementById("modalBox").innerHTML=`<h3>غير متاحة</h3><p class="hint">الفكرة ما زالت قيد الفحص ولم تُعتمد للسوق.</p><button class="btn btn-ghost" onclick="closeModal()">إغلاق</button>`;
+    document.getElementById("modal").classList.add("open");
+    return;
+  }
+  const filesHtml=idea.files.length?idea.files.map(f=>{
+    if(!canSeeFull) return `<div class="file-chip"><span>🔒 ${esc(f.name)} — محمي</span></div>`;
+    const view=f.type.startsWith("image/")?`<img src="${f.dataUrl}" alt="" style="max-width:100%;border-radius:10px;margin-top:8px">`:`<a class="btn btn-sm btn-ghost" href="${f.dataUrl}" download="${esc(f.name)}">تنزيل</a>`;
+    return `<div class="file-chip" style="flex-wrap:wrap"><span>${esc(f.name)}</span>${view}</div>`;
+  }).join(""):`<p class="hint">لا ملفات.</p>`;
+
+  let actions="";
+  if(isAdmin){
+    actions+=`<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px">
+      ${can("ideas.approve")?`<button class="btn btn-sm btn-primary" onclick="setStatus('${idea.id}','available')">اعتماد كمتاح</button>
+      <button class="btn btn-sm btn-ghost" onclick="setStatus('${idea.id}','free')">مجانية</button>
+      <button class="btn btn-sm btn-gold" onclick="setStatus('${idea.id}','negotiating')">قيد التفاوض</button>
+      <button class="btn btn-sm btn-primary" onclick="finalizeSale('${idea.id}')">إتمام البيع ${simBadge()}</button>`:`<span class="hint">لا صلاحية للاعتماد</span>`}
+      ${can("ideas.delete")||can("ideas.approve")?`<button class="btn btn-sm btn-danger" onclick="setStatus('${idea.id}','cancelled')">إلغاء / إقفال</button>`:""}
+    </div>`;
+  }
+  if(isOwner&&!["sold","cancelled"].includes(idea.status)) actions+=`<div style="margin-top:12px"><button class="btn btn-sm btn-danger" onclick="setStatus('${idea.id}','cancelled')">إغلاق فكرتي</button></div>`;
+  if(u.role==="buyer"&&["available","free"].includes(idea.status)&&!isOwner){
+    if(!signed) actions+=`<div style="margin-top:12px"><button class="btn btn-primary" onclick="signNda('${idea.id}')">توقيع NDA ${simBadge()}</button></div>`;
+    else if(idea.price>0&&!idea.escrow) actions+=`<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button class="btn btn-primary" onclick="payEscrow('${idea.id}')">دفع ${idea.price} ر.س للضمان ${simBadge("ضامن")}</button><button class="btn btn-ghost" onclick="requestMeeting('${idea.id}')">📅 طلب مقابلة</button></div>`;
+    else if(idea.escrow&&!idea.released) actions+=`<div style="margin-top:12px"><button class="btn btn-primary" onclick="confirmReceive('${idea.id}')">تأكيد الاستلام وتحرير المبلغ ${simBadge()}</button></div>`;
+  }
+
+  document.getElementById("modalBox").innerHTML=`<div style="display:flex;justify-content:space-between;gap:8px;align-items:start"><div><h3>${esc(idea.title)}</h3><div style="margin-top:8px">${statusBadge(idea.status)}</div></div><button class="btn btn-ghost btn-sm" onclick="closeModal()">إغلاق</button></div>
+    <p class="hint" style="margin-top:10px">${esc(idea.category||"")} · ${idea.price} ر.س</p>
+    ${idea.equity>0?`<div class="admin-banner" style="margin-top:10px;border-color:var(--amber-soft)">حصة مطلوبة: <b>${idea.equity}%</b> — تُسجَّل في العقد النهائي بحضور الإدارة.</div>`:""}
+    ${idea.note?`<div class="admin-banner">${esc(idea.note)}</div>`:""}
+    <h4 style="margin:18px 0 8px">النبذة</h4><p>${esc(idea.summary)}</p>
+    <h4 style="margin:18px 0 8px">التفاصيل</h4><p>${canSeeFull?esc(idea.description):"محجوبة حتى NDA."}</p>
+    <h4 style="margin:18px 0 8px">الملفات</h4>${filesHtml}
+    ${idea.certificate?`<div class="cert" style="margin-top:16px"><div style="color:var(--amber-soft)">شهادة</div><h3>${esc(idea.certificate.code)}</h3><p>${esc(idea.certificate.text)}</p></div>`:""}
+    ${actions}`;
+  document.getElementById("modal").classList.add("open");
+}
+function closeModal(){document.getElementById("modal").classList.remove("open")}
+document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()});
+function updateIdea(id,patch){db.saveIdeas(db.ideas().map(i=>i.id===id?{...i,...patch}:i))}
+function setStatus(id,status){
+  const u=currentUser();
+  const idea=db.ideas().find(i=>i.id===id);
+  if(!idea) return;
+  const owner=u.id===idea.ownerId;
+  if(u.role==="admin"){
+    if(["available","free","negotiating","sold"].includes(status) && !can("ideas.approve")) return alert("لا صلاحية لتغيير الحالة.");
+    if(status==="cancelled" && !(can("ideas.delete")||can("ideas.approve"))) return alert("لا صلاحية لإقفال الفكرة.");
+  }else if(!(owner && status==="cancelled")){
+    return alert("غير مسموح.");
+  }
+  updateIdea(id,{status});
+  db.log(`تغيير حالة «${idea.title}» إلى «${STATUS[status].label}»`);
+  closeModal();
+  renderPage(u.role==="admin"&&can("ideas.approve")?"review":"mine");
+}
+function signNda(id){const u=currentUser();const idea=db.ideas().find(i=>i.id===id);if(!confirm("محاكاة توقيع NDA: أقرّ بعدم إفشاء التفاصيل."))return;updateIdea(id,{nda:Array.from(new Set([...(idea.nda||[]),u.id]))});const signed=db.get("signed_"+u.id,[]);if(!signed.includes("b1")){signed.push("b1");db.set("signed_"+u.id,signed)}db.log(`${u.name} وقّع NDA (محاكاة) على «${idea.title}»`);openIdea(id)}
+function payEscrow(id){
+  const u=currentUser();
+  const idea=db.ideas().find(i=>i.id===id);
+  const fees=feeSettings();
+  const fee=Math.round((idea.price||0)*fees.commissionRate);
+  const adminFee=fees.adminFee||0;
+  const hold=(idea.price||0);
+  if(!confirm(`محاكاة ضمان «ضامن»:\nالمبلغ المحتجز: ${hold} ر.س\nعمولة المنصة ${Math.round(fees.commissionRate*100)}٪: ${fee} ر.س\nرسوم إدارية: ${adminFee} ر.س\nصافي البائع بعد التأكيد: ${hold-fee-adminFee} ر.س\n\nالمبلغ لن يصل للبائع الآن.`)) return;
+  updateIdea(id,{escrow:true,buyerId:u.id,status:"negotiating",fee,adminFee});
+  const signed=db.get("signed_"+u.id,[]);
+  ["b2","b4"].forEach(x=>{if(!signed.includes(x)) signed.push(x)});
+  db.set("signed_"+u.id,signed);
+  db.log(`${u.name} دفع للضمان (محاكاة) لشراء «${idea.title}»`);
+  openIdea(id);
+}
+function confirmReceive(id){finalizeSale(id)}
+function finalizeSale(id){
+  const idea=db.ideas().find(i=>i.id===id); if(!idea || idea.status==="sold") return;
+  const u=currentUser();
+  const isBuyer=u.id===idea.buyerId || u.role==="buyer";
+  if(u.role==="admin" && !can("ideas.approve")) return alert("لا صلاحية لإتمام البيع.");
+  if(u.role!=="admin" && !isBuyer) return alert("غير مسموح.");
+  const buyer=db.users().find(x=>x.id===idea.buyerId)||u;
+  const owner=db.users().find(x=>x.id===idea.ownerId);
+  const code="MLK-"+idea.id.slice(-6).toUpperCase();
+  const fees=feeSettings();
+  const fee=idea.fee??Math.round((idea.price||0)*fees.commissionRate);
+  const adminFee=idea.adminFee??fees.adminFee??0;
+  updateIdea(id,{status:"sold",released:true,escrow:true,fee,adminFee,certificate:{code,text:`نُقلت ملكية «${idea.title}» من ${owner?owner.name:"—"} إلى ${buyer?buyer.name:"—"}. حُرّر الضمان بعد تأكيد الاستلام. عمولة المنصة ${fee} ر.س + رسوم ${adminFee} ر.س.`}});
+  if(buyer){
+    const signed=db.get("signed_"+buyer.id,[]);
+    ["b3","b5","b6"].forEach(x=>{if(!signed.includes(x)) signed.push(x)});
+    db.set("signed_"+buyer.id,signed);
+  }
+  db.log(`إتمام بيع «${idea.title}» · ${code} (محاكاة تحرير ضامن)`);
+  openIdea(id);
+}
+function toggleUser(id){
+  if(!can("users.suspend")) return alert("لا صلاحية لإيقاف الحسابات.");
+  db.saveUsers(db.users().map(u=>u.id===id?{...u,status:u.status==="active"?"paused":"active"}:u));
+  db.log("تغيير حالة مستخدم");
+  renderPage("users");
+}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+
+function showTermsModal(){
+  document.getElementById("modalBox").innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center"><h3>الشروط والأحكام</h3><button class="btn btn-ghost btn-sm" onclick="closeModal()">إغلاق</button></div>
+  <div style="margin-top:16px;max-height:60vh;overflow-y:auto;background:var(--bg3);border-radius:14px;padding:18px;color:var(--ink2);line-height:1.8">
+    <h4 style="color:var(--teal);margin:14px 0 8px">١. قبول الشروط</h4><p>بالاستخدام توافق على الشروط.</p>
+    <h4 style="color:var(--teal);margin:14px 0 8px">٢. طبيعة المنصة</h4><p>وسيطة بين الأطراف.</p>
+    <h4 style="color:var(--teal);margin:14px 0 8px">٣. البائع</h4><p>يقرّ بالملكية الشرعية.</p>
+    <h4 style="color:var(--teal);margin:14px 0 8px">٤. المشتري</h4><p>يلتزم بـ NDA.</p>
+    <h4 style="color:var(--teal);margin:14px 0 8px">٥. الضمان</h4><p>عبر خدمة «ضامن».</p>
+    <h4 style="color:var(--teal);margin:14px 0 8px">٦. الملكية الفكرية</h4><p>تنتقل بعد البيع.</p>
+    <h4 style="color:var(--teal);margin:14px 0 8px">٧. منع الاحتيال</h4><p>إيقاف الحساب.</p>
+    <h4 style="color:var(--teal);margin:14px 0 8px">٨. البيانات</h4><p>سيرفرات آمنة.</p>
+    <h4 style="color:var(--teal);margin:14px 0 8px">٩. التعديلات</h4><p>حق التعديل محفوظ.</p>
+    <h4 style="color:var(--teal);margin:14px 0 8px">١٠. القانون</h4><p>أنظمة السعودية.</p>
+  </div>`;
+  document.getElementById("modal").classList.add("open");
+}
+
+const _menuBtn=document.getElementById("menuBtn");
+if(_menuBtn) _menuBtn.onclick=()=>document.getElementById("navLinks").classList.toggle("open");
+document.getElementById("waitlistForm").onsubmit=e=>{e.preventDefault();const data=Object.fromEntries(new FormData(e.target).entries());const list=db.get("waitlist",[]);list.push({...data,at:now()});db.set("waitlist",list);document.getElementById("formMsg").style.display="block";e.target.reset()};
+
+document.addEventListener("DOMContentLoaded",()=>{
+  const agree=document.getElementById("agreeTerms");
+  const regBtn=document.getElementById("regBtn");
+  if(agree&&regBtn){agree.addEventListener("change",()=>{regBtn.disabled=!agree.checked})}
+  applyTheme();
+});
+
+document.getElementById("loginForm").onsubmit=async e=>{
+  e.preventDefault();
+  const fd=new FormData(e.target);
+  const raw=fd.get("password");
+  const user=db.users().find(u=>u.username===fd.get("username"));
+  if(!user || !(await passMatches(user, raw))){document.getElementById("authErr").textContent="بيانات خاطئة.";return}
+  if(user.status!=="active"){document.getElementById("authErr").textContent="الحساب موقوف.";return}
+  await upgradePass(user, raw);
+  setSession(user);enterApp("dash");
+};
+document.getElementById("registerForm").onsubmit=async e=>{
+  e.preventDefault();
+  const fd=new FormData(e.target);
+  if(!fd.get("agree")){document.getElementById("authErr").textContent="وافق على الشروط.";return}
+  const username=fd.get("username").trim();
+  if(db.users().some(u=>u.username===username)){document.getElementById("authErr").textContent="اسم المستخدم مستخدم.";return}
+  const passwordHash=await sha256(fd.get("password"));
+  const user={id:uid(),username,passwordHash,name:fd.get("name").trim(),email:fd.get("email"),phone:fd.get("phone"),role:fd.get("role"),status:"active",createdAt:now(),agreedToTerms:true,agreedAt:now(),publicId:nextPublicId()};
+  const users=db.users();users.push(user);db.saveUsers(users);
+  db.log(`تسجيل ${user.name} (${ROLES[user.role]})`);
+  setSession(user);enterApp("dash");
+};
+function nextPublicId(){
+  const n=(db.get("pubSeq",1000))+1;
+  db.set("pubSeq",n);
+  return "MLK-"+n;
+}
+function publicIdOf(u){return (u&&u.publicId)||"MLK-----"}
+function ensurePublicIds(){
+  const users=db.users();
+  let n=db.get("pubSeq",1000), ch=false;
+  users.forEach(u=>{ if(!u.publicId){ n++; u.publicId="MLK-"+n; ch=true; } });
+  if(ch){ db.set("pubSeq",n); db.saveUsers(users); }
+}
+function pagePurchased(u){
+  const list=db.ideas().filter(i=>i.buyerId===u.id && i.status==="sold");
+  if(!list.length) return `<div class="admin-banner">لا توجد أفكار مشتراة بعد. بعد إتمام البيع تظهر هنا.</div>`;
+  return `<p class="hint" style="margin-bottom:12px">الأفكار التي اكتمل شراؤها لحسابك.</p><div class="idea-grid">${list.map(ideaCard).join("")}</div>`;
+}
+function advisorInboxHtml(u){
+  const open=getConsultTickets().filter(t=>t.status==="open");
+  if(!open.length) return `<div class="glass-card" style="margin-top:18px"><h3>الاستشارات الجديدة</h3><p class="hint">لا طلبات جديدة.</p></div>`;
+  return `<div class="glass-card" style="margin-top:18px"><h3>الاستشارات الجديدة</h3>
+    ${open.map(t=>{
+      const owner=db.users().find(x=>x.id===t.userId);
+      return `<div class="doc-item">
+        <b>${esc(t.kind)} · ${esc(t.item)}</b>
+        <p>${esc(t.note)}</p>
+        <p class="hint">رقم المستخدم: ${esc(publicIdOf(owner))}</p>
+        <textarea class="field" id="rep_${t.id}" rows="2" placeholder="اكتب رد الاستشارة"></textarea>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="btn btn-sm btn-primary" onclick="sendConsultReply('${t.id}')">حفظ وإرسال</button>
+        </div>
+      </div>`;
+    }).join("")}
+  </div>`;
+}
+function sendConsultReply(id){
+  const u=currentUser();
+  const box=document.getElementById("rep_"+id);
+  const reply=(box&&box.value.trim())||"";
+  if(!reply) return alert("اكتب الرد أولاً.");
+  db.set("consultTickets", getConsultTickets().map(t=>t.id===id?{...t,status:"done",reply,advisorId:u.id,repliedAt:now()}:t));
+  db.log("إرسال رد استشارة");
+  alert("أُرسل الرد لطالب الاستشارة.");
+  renderPage("dash");
+}
+function pageGivenConsult(u){
+  const mine=getConsultTickets().filter(t=>t.advisorId===u.id || (u.role==="advisor"&&t.reply));
+  const users=new Set(mine.map(t=>t.userId));
+  return `<div class="stats" style="margin-bottom:18px">
+    <div class="stat"><span class="hint">استشارات مقدّمة</span><b>${mine.length}</b></div>
+    <div class="stat"><span class="hint">مستخدمون</span><b>${users.size}</b></div>
+  </div>
+  ${mine.length?mine.map(t=>{
+    const owner=db.users().find(x=>x.id===t.userId);
+    return `<div class="doc-item">
+      <b>${esc(t.kind)} · ${esc(t.item)}</b>
+      <p>${esc(t.note)}</p>
+      <p class="hint">المستخدم: ${esc(publicIdOf(owner))}</p>
+      ${t.reply?`<p style="margin-top:8px">الرد: ${esc(t.reply)}</p>`:"<p class='hint'>بلا رد بعد</p>"}
+    </div>`;
+  }).join(""):`<div class="admin-banner">لا استشارات مقدّمة بعد.</div>`}`;
+}
+const DEFAULT_CURSORS=[
+  {id:"c_arrow",name:"سهم",icon:"➤",code:"auto",bubble:false,roles:["seller","buyer","advisor","admin"],enabled:true,builtin:true},
+  {id:"c_bubble",name:"فقاعة",icon:"🫧",code:"bubble",bubble:true,roles:["seller","buyer","advisor","admin"],enabled:true,builtin:true}
+];
+function getCursors(){
+  const list=db.get("cursors",null);
+  if(!Array.isArray(list)||!list.length) return DEFAULT_CURSORS.slice();
+  const ids=list.map(c=>c.id);
+  DEFAULT_CURSORS.forEach(d=>{ if(!ids.includes(d.id)) list.unshift(d); });
+  return list;
+}
+function saveCursors(list){db.set("cursors",list); applyCursorMode();}
+function emojiCursor(emoji){
+  const svg=`<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><text y='24' font-size='22'>${emoji}</text></svg>`;
+  return `url("data:image/svg+xml,${encodeURIComponent(svg)}") 4 4, auto`;
+}
+function cssFromCursor(c){
+  const code=(c.code||"").trim();
+  if(!code || code==="auto" || code==="arrow" || code==="سهم") return "auto";
+  if(code==="bubble" || code==="فقاعة") return emojiCursor("🫧");
+  if(/^(url\(|pointer|crosshair|grab|text|wait|help|move|cell|copy|not-allowed|progress|zoom-in|zoom-out|none)/i.test(code)) return code;
+  if(code.length<=4) return emojiCursor(code);
+  return code;
+}
+function iconFromCode(code){
+  const t=(code||"").trim();
+  if(t==="bubble"||t==="فقاعة") return "🫧";
+  if(t.length<=3) return t;
+  if(/pointer/i.test(t)) return "☝";
+  if(/url\(/i.test(t)) return "🖼️";
+  return "✨";
+}
+function activeCursor(){
+  const list=getCursors().filter(c=>c.enabled);
+  const u=currentUser();
+  const role=u?u.role:"guest";
+  const allowed=list.filter(c=>!c.roles||!c.roles.length||c.roles.includes(role)||role==="guest");
+  const pickId=db.get("cursor_"+(u?u.id:"guest"), null);
+  return allowed.find(c=>c.id===pickId) || allowed.find(c=>c.bubble) || allowed[0] || DEFAULT_CURSORS[1];
+}
+function cursorMode(){const c=activeCursor(); return c&&c.bubble?"bubble":(c?c.id:"arrow")}
+function setCursorMode(id){
+  const u=currentUser();
+  db.set("cursor_"+(u?u.id:"guest"), id);
+  applyCursorMode();
+  if(u && !document.getElementById("view-app").classList.contains("hidden")) renderPage("cursorSet");
+}
+function applyCursorMode(){
+  const c=activeCursor();
+  const css=cssFromCursor(c||DEFAULT_CURSORS[0]);
+  let tag=document.getElementById("cursorStyle");
+  if(!tag){ tag=document.createElement("style"); tag.id="cursorStyle"; document.head.appendChild(tag); }
+  tag.textContent=`body, body * { cursor: ${css} !important; }`;
+  document.body.classList.toggle("cursor-bubble", !!(c&&c.bubble));
+}
+function pageCursorSet(){
+  const u=currentUser();
+  const role=u?u.role:"guest";
+  const list=getCursors().filter(c=>c.enabled && (!c.roles||!c.roles.length||c.roles.includes(role)));
+  const cur=activeCursor();
+  if(!list.length) return `<div class="admin-banner">لا مؤشرات مفعّلة لدورك حالياً.</div>`;
+  return `<div class="glass-card">
+    <h3>شكل المؤشر</h3>
+    <p class="hint">المؤشرات التي فعّلتها الإدارة لدورك. التغيير فوري.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
+      ${list.map(c=>`<button class="btn ${cur&&cur.id===c.id?"btn-primary":"btn-ghost"}" type="button" onclick="setCursorMode('${c.id}')">${esc(c.icon||"✨")} ${esc(c.name)}</button>`).join("")}
+    </div>
+  </div>`;
+}
+function pageCursorsAdmin(){
+  const list=getCursors();
+  return `<div class="glass-card" style="margin-bottom:16px">
+    <div class="doc-head-row">
+      <div><h3>مؤشرات المنصة</h3><p class="hint">أضف كود مؤشر ثم حدّد الأدوار. يُطبَّق فوراً على الموقع والتطبيق.</p></div>
+      <button class="doc-add-btn" type="button" onclick="openCursorForm(-1)">➕ إضافة مؤشر</button>
+    </div>
+  </div>
+  ${list.map((c,idx)=>`
+    <div class="doc-item">
+      <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap">
+        <b>${esc(c.icon||"✨")} ${esc(c.name)}</b>
+        <span class="badge">${c.enabled?"مفعّل":"متوقف"}</span>
+      </div>
+      <p class="hint">${esc(c.code)}</p>
+      <p class="hint">الأدوار: ${(c.roles||[]).map(r=>ROLES[r]||r).join(" · ")||"الكل"} ${c.bubble?"· فقاعة عند النقر":""}</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+        <button class="btn btn-sm btn-ghost" onclick="openCursorForm(${idx})">تعديل</button>
+        <button class="btn btn-sm ${c.enabled?"btn-primary":"btn-ghost"}" onclick="toggleCursor('${c.id}')">${c.enabled?"إيقاف":"تفعيل"}</button>
+        ${c.builtin?"":`<button class="btn btn-sm btn-danger" onclick="deleteCursor('${c.id}')">حذف</button>`}
+      </div>
+    </div>
+  `).join("")}`;
+}
+function openCursorForm(idx){
+  const list=getCursors();
+  const c=idx>=0?list[idx]:{name:"",code:"",icon:"",roles:["seller","buyer","advisor","admin"],enabled:true,bubble:false};
+  const roles=["seller","buyer","advisor","admin"];
+  document.getElementById("modalBox").innerHTML=`
+    <h3>${idx>=0?"تعديل المؤشر":"إضافة مؤشر"}</h3>
+    <div class="form-grid" style="margin-top:14px">
+      <div><label>الاسم</label><input class="field" id="curName" value="${esc(c.name)}"></div>
+      <div><label>كود المؤشر</label><textarea class="field" id="curCode" rows="3" placeholder="bubble أو 🔥 أو pointer أو url(...)">${esc(c.code||"")}</textarea></div>
+      <div><label>أيقونة العرض</label><input class="field" id="curIcon" value="${esc(c.icon||"")}" placeholder="تُستنتج من الكود"></div>
+      <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="curAll" ${(c.roles||[]).length===4?"checked":""}> تفعيل لجميع المستخدمين</label>
+      <div>${roles.map(r=>`<label style="display:flex;gap:8px;align-items:center;margin:6px 0"><input type="checkbox" class="cur-role" value="${r}" ${(c.roles||[]).includes(r)?"checked":""}> ${ROLES[r]}</label>`).join("")}</div>
+      <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="curBub" ${c.bubble?"checked":""}> فقاعة عند النقر/اللمس</label>
+      <button class="btn btn-primary" type="button" onclick="saveCursorForm(${idx})">حفظ وتطبيق الآن</button>
+    </div>`;
+  document.getElementById("modal").classList.add("open");
+  document.getElementById("curAll").onchange=()=>{
+    const on=document.getElementById("curAll").checked;
+    document.querySelectorAll(".cur-role").forEach(x=>x.checked=on);
+  };
+}
+function saveCursorForm(idx){
+  const name=document.getElementById("curName").value.trim();
+  const code=document.getElementById("curCode").value.trim();
+  if(!name||!code) return alert("الاسم والكود مطلوبان.");
+  let roles=[...document.querySelectorAll(".cur-role:checked")].map(x=>x.value);
+  if(document.getElementById("curAll").checked) roles=["seller","buyer","advisor","admin"];
+  if(!roles.length) return alert("حدّد دوراً واحداً على الأقل.");
+  const bubble=document.getElementById("curBub").checked || /bubble|فقاعة/.test(code);
+  const icon=document.getElementById("curIcon").value.trim() || iconFromCode(code);
+  const list=getCursors();
+  if(idx>=0) list[idx]={...list[idx],name,code,icon,roles,bubble};
+  else list.push({id:"c_"+uid(),name,code,icon,roles,bubble,enabled:true});
+  saveCursors(list);
+  closeModal();
+  renderPage("cursors");
+}
+function toggleCursor(id){
+  saveCursors(getCursors().map(c=>c.id===id?{...c,enabled:!c.enabled}:c));
+  renderPage("cursors");
+}
+function deleteCursor(id){
+  saveCursors(getCursors().filter(c=>c.id!==id));
+  renderPage("cursors");
+}
+function spawnBubble(x,y){
+  const el=document.createElement("span");
+  el.className="fx-bubble";
+  el.style.left=(x-9)+"px";
+  el.style.top=(y-9)+"px";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),720);
+}
+document.addEventListener("pointerdown", e=>{
+  const c=activeCursor();
+  if(!c || !c.bubble) return;
+  if(e.target.closest(".ai-panel")||e.target.closest(".more-sheet")||e.target.closest(".modal")) return;
+  spawnBubble(e.clientX, e.clientY);
+});
+const DEFAULT_CONTACT={whatsapp:"",email:"info@milkia.sa",phone:"",twitter:"",linkedin:"",instagram:"",hours:"الأحد - الخميس · 9ص - 5م"};
+function getContact(){return {...DEFAULT_CONTACT, ...db.get("contact",DEFAULT_CONTACT)}}
+function openContact(){
+  const c=getContact();
+  const rows=[
+    c.whatsapp?`<a href="https://wa.me/${c.whatsapp.replace(/\D/g,"")}" target="_blank" class="btn btn-ghost" style="justify-content:flex-start">💬 واتساب: ${esc(c.whatsapp)}</a>`:"",
+    c.email?`<a href="mailto:${c.email}" class="btn btn-ghost" style="justify-content:flex-start">✉️ ${esc(c.email)}</a>`:"",
+    c.phone?`<a href="tel:${c.phone}" target="_self" class="btn btn-ghost" style="justify-content:flex-start">📱 ${esc(c.phone)}</a>`:"",
+    c.twitter?`<a href="https://twitter.com/${c.twitter.replace("@","")}" target="_blank" class="btn btn-ghost" style="justify-content:flex-start">🐦 تويتر: ${esc(c.twitter)}</a>`:"",
+    c.linkedin?`<a href="${/^https?:/.test(c.linkedin)?c.linkedin:"https://"+c.linkedin}" target="_blank" class="btn btn-ghost" style="justify-content:flex-start">💼 لينكدإن</a>`:"",
+    c.instagram?`<a href="https://instagram.com/${c.instagram.replace("@","")}" target="_blank" class="btn btn-ghost" style="justify-content:flex-start">📷 إنستقرام: ${esc(c.instagram)}</a>`:""
+  ].filter(Boolean);
+  document.getElementById("modalBox").innerHTML=`
+    <div style="display:flex;justify-content:space-between;align-items:center"><h3>اتصل بنا</h3>
+      <button class="btn btn-ghost btn-sm" onclick="closeModal()">إغلاق</button></div>
+    <div class="form-grid" style="margin-top:16px">
+      ${rows.length?rows.join(""):`<p class="hint">لم تُضف وسائل تواصل بعد. يضيفها الأدمن من إعدادات التواصل.</p>`}
+      ${c.hours?`<div class="hint" style="text-align:center;margin-top:8px">🕒 ${esc(c.hours)}</div>`:""}
+    </div>`;
+  document.getElementById("modal").classList.add("open");
+}
+function pageContactSettings(){
+  const c=getContact();
+  return `<div class="glass-card">
+    <h3>وسائل التواصل</h3>
+    <p class="hint">تظهر تلقائياً في أيقونة الهاتف أعلى الصفحة وفي الزر العائم أسفل الشاشة وفي تذييل الموقع.</p>
+    <div class="form-grid" style="margin-top:14px">
+      <div><label>واتساب</label><input class="field" id="cWa" value="${esc(c.whatsapp)}" placeholder="+9665xxxxxxxx"></div>
+      <div><label>البريد</label><input class="field" id="cEmail" value="${esc(c.email)}"></div>
+      <div><label>الجوال</label><input class="field" id="cPhone" value="${esc(c.phone)}"></div>
+      <div><label>تويتر</label><input class="field" id="cTw" value="${esc(c.twitter)}" placeholder="@milkia_sa"></div>
+      <div><label>لينكدإن</label><input class="field" id="cLi" value="${esc(c.linkedin)}"></div>
+      <div><label>إنستقرام</label><input class="field" id="cIg" value="${esc(c.instagram)}"></div>
+      <div><label>ساعات العمل</label><input class="field" id="cHours" value="${esc(c.hours)}"></div>
+      <button class="btn btn-primary" type="button" onclick="saveContact()">حفظ</button>
+    </div>
+  </div>`;
+}
+function saveContact(){
+  db.set("contact",{
+    whatsapp:document.getElementById("cWa").value.trim(),
+    email:document.getElementById("cEmail").value.trim(),
+    phone:document.getElementById("cPhone").value.trim(),
+    twitter:document.getElementById("cTw").value.trim(),
+    linkedin:document.getElementById("cLi").value.trim(),
+    instagram:document.getElementById("cIg").value.trim(),
+    hours:document.getElementById("cHours").value.trim()
+  });
+  db.log("تحديث بيانات التواصل");
+  renderPage("contact");
+  alert("تم الحفظ. الأيقونتان العلوية والسفلية تعرضان نفس البيانات.");
+}
+function requestMeeting(ideaId){
+  const u=currentUser();
+  const idea=db.ideas().find(i=>i.id===ideaId);
+  if(!idea||!u) return;
+  if(u.role!=="buyer" && u.role!=="admin") return alert("للمشتري فقط.");
+  document.getElementById("modalBox").innerHTML=`
+    <h3>طلب مقابلة</h3>
+    <p class="hint">بحضور عضو من الإدارة لتوثيق الاتفاق.</p>
+    <div class="form-grid" style="margin-top:14px">
+      <div><label>التاريخ المفضل</label><input class="field" id="mtDate" type="date"></div>
+      <div><label>الوقت المفضل</label><select class="field" id="mtTime">
+        <option>صباحاً (9-12)</option><option>ظهراً (12-3)</option><option>عصراً (3-6)</option>
+      </select></div>
+      <div><label>ملاحظات</label><textarea class="field" id="mtNote" rows="2" placeholder="اختياري"></textarea></div>
+      <button class="btn btn-primary" type="button" onclick="saveMeeting('${ideaId}')">إرسال الطلب</button>
+    </div>`;
+  document.getElementById("modal").classList.add("open");
+}
+function saveMeeting(ideaId){
+  const u=currentUser();
+  const list=db.get("meetings",[]);
+  list.unshift({id:"mt_"+uid(),ideaId,buyerId:u.id,date:document.getElementById("mtDate").value,time:document.getElementById("mtTime").value,note:document.getElementById("mtNote").value.trim(),status:"pending",at:now()});
+  db.set("meetings",list);
+  db.log(`طلب مقابلة من ${u.name}`);
+  alert("تم إرسال طلب المقابلة. ستتواصل الإدارة قريباً.");
+  closeModal();
+}
+function pageMeetings(){
+  const list=db.get("meetings",[]);
+  if(!list.length) return `<div class="admin-banner">لا طلبات مقابلة بعد.</div>`;
+  return `<div class="admin-banner" style="margin-bottom:16px">عدد الطلبات: <b>${list.length}</b></div>`+
+  list.map(m=>{
+    const idea=db.ideas().find(i=>i.id===m.ideaId);
+    const buyer=db.users().find(u=>u.id===m.buyerId);
+    const owner=idea?db.users().find(u=>u.id===idea.ownerId):null;
+    return `<div class="doc-item">
+      <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap">
+        <b>${esc(idea?idea.title:"فكرة محذوفة")}</b>
+        <span class="badge">${m.status==="pending"?"قيد المراجعة":m.status==="approved"?"مؤكدة":"ملغاة"}</span>
+      </div>
+      <p>المشتري: ${esc(buyer?buyer.name:"—")} · البائع: ${esc(owner?owner.name:"—")}</p>
+      <p>التاريخ: ${esc(m.date||"—")} · الوقت: ${esc(m.time||"—")}</p>
+      ${m.note?`<p class="hint">${esc(m.note)}</p>`:""}
+      ${m.status==="pending"?`<div style="display:flex;gap:8px;margin-top:10px">
+        <button class="btn btn-sm btn-primary" onclick="setMeetingStatus('${m.id}','approved')">موافقة</button>
+        <button class="btn btn-sm btn-danger" onclick="setMeetingStatus('${m.id}','cancelled')">إلغاء</button>
+      </div>`:""}
+    </div>`;
+  }).join("");
+}
+function setMeetingStatus(id,status){
+  db.set("meetings",db.get("meetings",[]).map(m=>m.id===id?{...m,status}:m));
+  db.log("تحديث طلب مقابلة");
+  renderPage("meetings");
+}
+seed();
+ensurePublicIds();
+hydratePasswords();
+setSession(null);
+applyTheme();
+applyDeviceMode();
+showLanding();
+refreshLandingAuth();
+setAiReady();
+window.addEventListener("resize", applyDeviceMode);
+document.addEventListener("click", e=>{
+  const panel=document.getElementById("aiPanel");
+  if(panel && panel.classList.contains("open") && !panel.contains(e.target) && !e.target.closest(".ai-btn") && !e.target.closest(".ai-fab")) toggleAi(false);
+  const sheet=document.getElementById("moreSheet");
+  if(sheet && sheet.classList.contains("open") && !e.target.closest(".sheet") && !e.target.closest("[data-p='more']")) closeMore();
+});
+document.getElementById("aiQ").addEventListener("keydown", e=>{ if(e.key==="Enter" && !e.shiftKey){ e.preventDefault(); document.getElementById("aiForm").requestSubmit(); }});
+</script>
+</body>
+</html>
