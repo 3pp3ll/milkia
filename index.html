@@ -559,6 +559,7 @@ body::after{background:radial-gradient(circle,rgba(15,118,110,.08),transparent 7
 h1,h2,h3{letter-spacing:-.01em}
 ::selection{background:rgba(15,118,110,.18)}
 
+.logo{-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
 .beta-badge{position:fixed;bottom:14px;inset-inline-start:14px;z-index:9999;background:#fff;border:1px solid rgba(176,138,62,.45);color:#8f6824;font:600 12px/1.4 "IBM Plex Sans Arabic",system-ui,sans-serif;padding:6px 12px;border-radius:999px;box-shadow:0 6px 18px rgba(20,33,61,.08);pointer-events:none}
 @media(max-width:640px){.beta-badge{bottom:10px;inset-inline-start:10px;font-size:11px;padding:4px 10px}}
 .form-box input[type=radio],.form-box input[type=checkbox]{-webkit-appearance:auto;appearance:auto;width:18px!important;height:18px!important;min-height:0!important;padding:0!important;margin:0;border:0!important;background:none!important;box-shadow:none!important;accent-color:var(--teal);flex:none}
@@ -578,7 +579,7 @@ h1,h2,h3{letter-spacing:-.01em}
 <div id="view-landing">
 <header class="topnav">
   <div class="wrap topnav-inner">
-    <a class="logo" href="#top"><span class="logo-mark">م</span>مِلْكية</a>
+    <a class="logo" href="#top" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'});if(location.hash)history.replaceState(null,'',location.pathname)"><span class="logo-mark">م</span>مِلْكية</a>
     <nav class="nav-links" id="navLinks">
       <a href="#problem">المشكلة</a><a href="#solution">الحل</a><a href="#how">كيف تعمل</a><a href="#features">الميزات</a><a href="#partners">الشركاء</a><a href="#cta">سجّل اهتمامك</a>
     </nav>
