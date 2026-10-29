@@ -560,7 +560,9 @@ h1,h2,h3{letter-spacing:-.01em}
 ::selection{background:rgba(15,118,110,.18)}
 
 .beta-badge{position:fixed;bottom:14px;inset-inline-start:14px;z-index:9999;background:#fff;border:1px solid rgba(176,138,62,.45);color:#8f6824;font:600 12px/1.4 "IBM Plex Sans Arabic",system-ui,sans-serif;padding:6px 12px;border-radius:999px;box-shadow:0 6px 18px rgba(20,33,61,.08);pointer-events:none}
-@media(max-width:640px){.beta-badge{bottom:auto;top:8px;inset-inline-start:50%;transform:translateX(50%);font-size:11px;padding:4px 10px}}
+@media(max-width:640px){.beta-badge{bottom:10px;inset-inline-start:10px;font-size:11px;padding:4px 10px}}
+.form-box input[type=radio],.form-box input[type=checkbox]{-webkit-appearance:auto;appearance:auto;width:18px!important;height:18px!important;min-height:0!important;padding:0!important;margin:0;border:0!important;background:none!important;box-shadow:none!important;accent-color:var(--teal);flex:none}
+.form-box .role{display:flex!important;flex-direction:row!important;align-items:center;gap:10px;text-align:start}
 </style>
 </head>
 <body>
@@ -705,8 +707,9 @@ h1,h2,h3{letter-spacing:-.01em}
           <label class="role"><input type="radio" name="role" value="advisor"> مستشار</label>
         </div>
       </div>
+      <label class="role" style="grid-column:1/-1;align-items:flex-start;font-size:.9rem;line-height:1.6"><input type="checkbox" name="consent" value="1" required style="margin-top:4px"> أوافق على حفظ اسمي وبريدي وجوالي للتواصل معي بخصوص إطلاق مِلْكية فقط، ولي طلب حذفها في أي وقت.</label>
       <button class="btn btn-primary" type="submit" style="width:100%">سجّل اهتمامي</button>
-      <p class="form-msg" id="formMsg">تم تسجيل اهتمامك.</p>
+      <p class="form-msg" id="formMsg" role="status">تم تسجيل اهتمامك.</p>
     </div>
   </form>
 </div></section>
@@ -2556,7 +2559,21 @@ function showTermsModal(){
 
 const _menuBtn=document.getElementById("menuBtn");
 if(_menuBtn) _menuBtn.onclick=()=>document.getElementById("navLinks").classList.toggle("open");
-document.getElementById("waitlistForm").onsubmit=e=>{e.preventDefault();const data=Object.fromEntries(new FormData(e.target).entries());const list=db.get("waitlist",[]);list.push({...data,at:now()});db.set("waitlist",list);document.getElementById("formMsg").style.display="block";e.target.reset()};
+/* قائمة الاهتمام تنحفظ في Supabase (مشروع عقود) — الزائر يسجّل، والقراءة للمالك فقط */
+const MK_SB={url:"https://ecqhdztlrckupjlizxsv.supabase.co",key:"sb_publishable_nSXC6s1s8zJbUaGPOxLPMA_pKo8TOY7"};
+document.getElementById("waitlistForm").onsubmit=async e=>{e.preventDefault();const f=e.target,msg=document.getElementById("formMsg"),btn=f.querySelector('button[type=submit]');
+  const d=Object.fromEntries(new FormData(f).entries());
+  const phone=String(d.phone||"").replace(/[٠-٩]/g,c=>"٠١٢٣٤٥٦٧٨٩".indexOf(c)).replace(/[^0-9+ ]/g,"");
+  const show=(t,ok)=>{msg.textContent=t;msg.style.display="block";msg.style.color=ok?"":"#b91c1c"};
+  if(!/^[0-9+ ]{9,16}$/.test(phone))return show("اكتب رقم جوال صحيح.");
+  btn.disabled=true;
+  try{const r=await fetch(MK_SB.url+"/rest/v1/milkia_waitlist",{method:"POST",headers:{apikey:MK_SB.key,Authorization:"Bearer "+MK_SB.key,"Content-Type":"application/json",Prefer:"return=minimal"},
+      body:JSON.stringify({name:String(d.name||"").trim().slice(0,80),email:String(d.email||"").trim().slice(0,120),phone,role:d.role,consent:!!d.consent})});
+    if(r.ok){show("تم تسجيل اهتمامك ✓ بنتواصل معك أول ما نطلق.",true);f.reset()}
+    else if(r.status===409){show("بريدك مسجّل عندنا من قبل ✓",true);f.reset()}
+    else show("ما قدرنا نسجّل الحين، حاول بعد شوي.");
+  }catch(x){show("تأكد من الإنترنت وحاول مرة ثانية.")}
+  btn.disabled=false};
 
 document.addEventListener("DOMContentLoaded",()=>{
   const agree=document.getElementById("agreeTerms");
